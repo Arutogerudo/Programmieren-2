@@ -50,7 +50,7 @@ public class Tank extends CollidingGameObject implements MainCharacter {
             gamePlayManager.refillAmmunition();
         } else if (!(other instanceof Shot) && !(other instanceof Tank)) { // noch mehr
             gamePlayManager.lifeLost();
-        } //TODO boooooolean!!!!!!!!!
+        } //TODO boooooolean bitte machen!!!!!!!!!
     }
 
     /**
