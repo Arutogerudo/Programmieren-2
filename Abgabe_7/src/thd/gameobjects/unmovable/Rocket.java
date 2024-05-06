@@ -2,12 +2,14 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * movable Gameobject Rocket (game field).
  */
-public class Rocket extends CollidingGameObject {
+public class Rocket extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
     /**
      * Creates a Rocket in the given gameview.
@@ -40,4 +42,8 @@ public class Rocket extends CollidingGameObject {
         gameView.addImageToCanvas("rocket.png", position.getX(), position.getY(), size, rotation);
     }
 
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
 }

@@ -2,12 +2,14 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * movable Gameobject StartRamp (game field).
  */
-public class StartRamp extends CollidingGameObject {
+public class StartRamp extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
     /**
      * Creates a StartRamp in the given gameview.
@@ -40,4 +42,8 @@ public class StartRamp extends CollidingGameObject {
         gameView.addImageToCanvas("startramp.png", position.getX(), position.getY(), size, rotation);
     }
 
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
 }

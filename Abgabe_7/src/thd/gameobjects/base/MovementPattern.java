@@ -116,4 +116,7 @@ public class MovementPattern {
         }
         currentIndex = -1;
     }
+    protected void worldShift(double pixel){
+
+    }
 }

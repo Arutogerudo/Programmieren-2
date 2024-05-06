@@ -69,6 +69,9 @@ public class GamePlayManager extends WorldShiftManager {
      */
     public void lifeLost(){
         lives -= 1;
+        if (lives <= 0) {
+            throw new GameOverException("Game over!");
+        }
     }
 
     /**

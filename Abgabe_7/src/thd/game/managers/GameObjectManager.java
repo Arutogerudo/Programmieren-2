@@ -37,7 +37,7 @@ public class GameObjectManager extends CollisionManager {
             gameObject.updatePosition();
             gameObject.addToCanvas();
         }
-        manageCollisions(true);
+        manageCollisions(false);
     }
     private void updateLists() {
         removeFromGameObjects();

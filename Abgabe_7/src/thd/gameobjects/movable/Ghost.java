@@ -1,15 +1,17 @@
 package thd.gameobjects.movable;
 
 import thd.game.managers.GamePlayManager;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.Position;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * movable Gameobject Ghost (enemy).
  */
-public class Ghost extends CollidingGameObject implements ShiftableGameObject {
-    private final QuadraticMovementPatternUse quadraticMovementPattern;
+public class Ghost extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+    private final EnemyMovementPatterns enemyMovementPatterns;
     private static final int WIDTH_MOVE = 500;
     private static final int HEIGHT_MOVE = 200;
 
@@ -19,17 +21,17 @@ public class Ghost extends CollidingGameObject implements ShiftableGameObject {
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
      */
-    public Ghost(GameView gameView, GamePlayManager gamePlayManager, double x, double y) {
+    public Ghost(GameView gameView, GamePlayManager gamePlayManager, Position start, String pattern) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(x, y);
+        position.updateCoordinates(new Position(start));
         size = 0.1;
         speedInPixel = 2;
         rotation = 0;
         width = 75;
         height = 43;
         hitBoxOffsets(0, 0, 0, 0);
-        quadraticMovementPattern = new QuadraticMovementPatternUse(position, WIDTH_MOVE, HEIGHT_MOVE, "top-right", false);
-        targetPosition.updateCoordinates(quadraticMovementPattern.nextTargetPosition());
+        enemyMovementPatterns = new EnemyMovementPatterns(pattern, WIDTH_MOVE, "left", position, WIDTH_MOVE, HEIGHT_MOVE, "top-right", false);
+        targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition());
         distanceToBackground = 1;
     }
 
@@ -50,7 +52,7 @@ public class Ghost extends CollidingGameObject implements ShiftableGameObject {
     @Override
     public void updatePosition() {
         if (position.similarTo(targetPosition)) {
-            targetPosition.updateCoordinates(quadraticMovementPattern.nextTargetPosition());
+            targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition());
         }
         position.moveToPosition(targetPosition, speedInPixel);
     }
@@ -60,4 +62,12 @@ public class Ghost extends CollidingGameObject implements ShiftableGameObject {
         gameView.addImageToCanvas("ghostsmall.png", position.getX(), position.getY(), size, rotation);
     }
 
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
+
+    public void worldShift(double pixel){
+        enemyMovementPatterns.worldShift(pixel);
+    }
 }

@@ -2,8 +2,6 @@ package thd.game.managers;
 
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.GameObject;
-import thd.gameobjects.movable.Accordion;
-import thd.gameobjects.movable.Tank;
 
 import java.util.LinkedList;
 import java.util.List;

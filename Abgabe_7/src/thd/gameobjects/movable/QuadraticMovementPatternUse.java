@@ -32,4 +32,11 @@ class QuadraticMovementPatternUse extends MovementPattern {
     protected Position startPosition(Position... referencePositions) {
         return nextTargetPosition();
     }
+
+    @Override
+    protected void worldShift(double pixel){
+        for (Position position: pattern) {
+            position.updateCoordinates(position.getX() + pixel, position.getY());
+        }
+    }
 }

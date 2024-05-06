@@ -2,12 +2,14 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * unmovable Gameobject Jet (game field).
  */
-public class Jet extends CollidingGameObject {
+public class Jet extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
     /**
      * Creates a jet in the given gameview.
@@ -40,4 +42,8 @@ public class Jet extends CollidingGameObject {
         gameView.addImageToCanvas("jet.png", position.getX(), position.getY(), size, rotation);
     }
 
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
 }

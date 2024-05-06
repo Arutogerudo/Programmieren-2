@@ -80,6 +80,10 @@ public abstract class GameObject {
         return height;
     }
 
+    public Position getTargetPosition() {
+        return targetPosition;
+    }
+
     protected int widthOfBlockImage(String blockImage) {
         int widthBlockImage = 0;
         String[] linesOfBlockImages = blockImage.split("\n");
@@ -93,8 +97,17 @@ public abstract class GameObject {
         return blockImage.split("\n").length;
     }
 
-    public char getDistanceToBackground(){
+    /**
+     * Returns the distance to background of a game object.
+     *
+     * @return distance to background of game object
+     */
+    public char getDistanceToBackground() {
         return distanceToBackground;
+    }
+
+    public void worldShift(double pixel) {
+
     }
 
     @Override
@@ -106,25 +119,15 @@ public abstract class GameObject {
             return false;
         }
         GameObject gameObject = (GameObject) o;
-        if (Double.compare(this.position.getX(), gameObject.position.getX()) != 0) {
-            return false;
-        } else if (!this.position.equals(gameObject.position)) {
-            return false;
-        } else if (!this.targetPosition.equals(gameObject.position)) {
-            return false;
-        } else if (Double.compare(this.speedInPixel, gameObject.speedInPixel) != 0) {
-            return false;
-        } else if (Double.compare(this.size, gameObject.size) != 0) {
-            return false;
-        } else if (Double.compare(this.rotation, gameObject.rotation) != 0) {
-            return false;
-        } else if (Double.compare(this.height, gameObject.height) != 0) {
-            return false;
-        } else if (this.distanceToBackground == gameObject.distanceToBackground) {
-            return false;
-        } else {
-            return Double.compare(this.width, gameObject.width) == 0;
-        }
+        return Double.compare(this.position.getX(), gameObject.position.getX()) == 0
+                && this.position.equals(gameObject.position)
+                && this.targetPosition.equals(gameObject.position)
+                && Double.compare(this.speedInPixel, gameObject.speedInPixel) == 0
+                && Double.compare(this.size, gameObject.size) == 0
+                && Double.compare(this.rotation, gameObject.rotation) == 0
+                && Double.compare(this.height, gameObject.height) == 0
+                && this.distanceToBackground == gameObject.distanceToBackground
+                && Double.compare(this.width, gameObject.width) == 0;
     }
 
     @Override

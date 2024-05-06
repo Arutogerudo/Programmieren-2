@@ -1,8 +1,10 @@
 package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ShiftableGameObject;
 import thd.gameobjects.movable.Tank;
 
 /**
@@ -10,7 +12,7 @@ import thd.gameobjects.movable.Tank;
  * Must be collected in various locations.
  * By collecting you gain ammutition.
  */
-public class RadioactivePack extends CollidingGameObject {
+public class RadioactivePack extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
     /**
      * Creates a radioactive pack in the given gameview.
@@ -46,4 +48,8 @@ public class RadioactivePack extends CollidingGameObject {
         gameView.addImageToCanvas("radioactivepack.png", position.getX(), position.getY(), size, rotation);
     }
 
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
 }

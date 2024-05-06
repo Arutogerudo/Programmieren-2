@@ -46,6 +46,7 @@ class Shot extends CollidingGameObject implements ShiftableGameObject {
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof Accordion || other instanceof Ghost ||other instanceof Spy) {
             gamePlayManager.addPoints(POINTS_PER_KILL);
+            gamePlayManager.destroyGameObject(this);
         }
     }
 }

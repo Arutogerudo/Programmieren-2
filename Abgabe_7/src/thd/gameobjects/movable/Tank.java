@@ -4,8 +4,7 @@ import thd.game.managers.GamePlayManager;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.MainCharacter;
-import thd.gameobjects.unmovable.Bush;
-import thd.gameobjects.unmovable.Jet;
+import thd.gameobjects.base.ShiftableGameObject;
 import thd.gameobjects.unmovable.RadioactivePack;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,12 +12,14 @@ import java.util.List;
 /**
  * movable Gameobject Tank (maincharacter).
  */
-public class Tank extends CollidingGameObject implements MainCharacter {
+public class Tank extends CollidingGameObject implements MainCharacter, ShiftableGameObject {
     // private String imageURL;
     private final int shotDurationInMilliseconds;
     private static final double ADDITIONAL_X_VALUE_FOR_SHOT_POSITION = 70;
     private static final double ADDITIONAL_Y_VALUE_FOR_SHOT_POSITION = 19;
     private static final int POINTS_PER_PACK = 100;
+    private int dimension;
+    private boolean unbeatable;
     private List<CollidingGameObject> collidingGameObjectsForPathDecision;
 
     /**
@@ -30,16 +31,25 @@ public class Tank extends CollidingGameObject implements MainCharacter {
     public Tank(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         size = 0.1;
-        speedInPixel = 2;
+        speedInPixel = 5;
         rotation = 0;
         width = 75;
         height = 55;
         hitBoxOffsets(0, 0, 0, 0);
         shotDurationInMilliseconds = 300;
         distanceToBackground = 1;
+        this.position.updateCoordinates(100, 100);
+        dimension = 1;
+        unbeatable = true;
     }
-    public void setCollidingGameObjectsForPathDecision(LinkedList<CollidingGameObject> collidingObjects){
-        collidingGameObjectsForPathDecision = collidingObjects;
+
+    /**
+     * Hand over a list of collinding game objects for path decision.
+     *
+     * @param collidingGameObjectsForPathDecision List of colliding Game objects for path decision.
+     */
+    public void setCollidingGameObjectsForPathDecision(LinkedList<CollidingGameObject> collidingGameObjectsForPathDecision){
+        this.collidingGameObjectsForPathDecision = collidingGameObjectsForPathDecision;
     }
 
     @Override
@@ -48,23 +58,29 @@ public class Tank extends CollidingGameObject implements MainCharacter {
             gamePlayManager.addPoints(POINTS_PER_PACK);
             gamePlayManager.collectPack();
             gamePlayManager.refillAmmunition();
-        } else if (!(other instanceof Shot) && !(other instanceof Tank)) { // noch mehr
-            gamePlayManager.lifeLost();
-        } //TODO boooooolean bitte machen!!!!!!!!!
+        } else if (!(other instanceof Shot) && !(other instanceof Tank)) {
+            if (!unbeatable) {
+                gamePlayManager.lifeLost();
+                unbeatable = true;
+            }
+        }
     }
 
     /**
      * Tank moves left.
      */
     public void left() {
-        //position.left(speedInPixel);
-        position.left(speedInPixel); // Bewegung zunächst wie geplant durchführen.
-        for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
-            if (collidesWith(collidingGameObject)) {
-                reactToCollisionWith(collidingGameObject);
-                position.right(speedInPixel); // Bewegung im Fall einer Kollision wieder zurücknehmen!
-                break;
+        if (position.getX() / dimension <= GAMEVIEW_WIDTH && position.getX() / dimension >= 0){
+            position.left(speedInPixel);
+            for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
+                if (collidesWith(collidingGameObject)) {
+                    reactToCollisionWith(collidingGameObject);
+                    position.right(speedInPixel);
+                    break;
+                }
             }
+        } else {
+            gamePlayManager.moveWorldToRight(GameView.WIDTH);
         }
     }
 
@@ -72,7 +88,6 @@ public class Tank extends CollidingGameObject implements MainCharacter {
      * Tank moves right.
      */
     public void right() {
-        //position.right(speedInPixel);
         if (position.getX() < GAMEVIEW_WIDTH){
             position.right(speedInPixel); // Bewegung zunächst wie geplant durchführen.
             for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
@@ -83,7 +98,8 @@ public class Tank extends CollidingGameObject implements MainCharacter {
                 }
             }
         } else {
-            gamePlayManager.moveWorldToRight(1280);
+            gamePlayManager.moveWorldToLeft(GameView.WIDTH);
+            dimension += 1;
         }
 
 
@@ -133,6 +149,13 @@ public class Tank extends CollidingGameObject implements MainCharacter {
     @Override
     public String toString() {
         return "Tank: " + position;
+    }
+
+    @Override
+    public void updateStatus(){
+        if (unbeatable && gameView.timer(1000, this)){
+            unbeatable = false;
+        }
     }
 
 

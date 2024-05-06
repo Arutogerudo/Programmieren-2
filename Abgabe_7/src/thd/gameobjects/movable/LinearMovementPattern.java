@@ -5,10 +5,10 @@ import thd.gameobjects.base.Position;
 
 class LinearMovementPattern extends MovementPattern {
 
-    LinearMovementPattern(double xCoordinate, double yCoordinate, int pixelToGo, String direction) {
+    LinearMovementPattern(Position start, int pixelToGo, String direction) {
         super();
         pattern = new Position[2];
-        pattern[0] = new Position(xCoordinate, yCoordinate);
+        pattern[0] = new Position(start);
         pattern[1] = targetPosition(pixelToGo, direction);
     }
 
@@ -33,5 +33,11 @@ class LinearMovementPattern extends MovementPattern {
             currentIndex = 0;
         }
         return pattern[currentIndex];
+    }
+
+    protected void worldShift(double pixel){
+        for (Position position: pattern) {
+            position.updateCoordinates(position.getX() + pixel, position.getY());
+        }
     }
 }

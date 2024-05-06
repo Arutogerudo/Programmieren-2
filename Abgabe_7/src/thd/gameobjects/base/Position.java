@@ -1,7 +1,6 @@
 package thd.gameobjects.base;
 
 import thd.game.utilities.GameView;
-
 import java.util.Objects;
 
 /**
@@ -10,7 +9,7 @@ import java.util.Objects;
  *
  * @see GameView
  */
-public class Position {
+public class Position implements Comparable<Position> {
 
     private double x;
     private double y;
@@ -188,6 +187,7 @@ public class Position {
         return "Position (" + (int) Math.round(x) + ", " + (int) Math.round(y) + ")";
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (o == this) {
@@ -203,5 +203,10 @@ public class Position {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public int compareTo(Position o) {
+        return Double.compare(distance(new Position()), o.distance(new Position()));
     }
 }

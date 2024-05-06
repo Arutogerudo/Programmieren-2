@@ -1,14 +1,17 @@
 package thd.gameobjects.movable;
+
 import thd.game.managers.GamePlayManager;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.Position;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * movable Gameobject Spy (enemy).
  */
-public class Spy extends CollidingGameObject implements ShiftableGameObject {
-    private final QuadraticMovementPatternUse quadraticMovementPatternUse;
+public class Spy extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+    private final EnemyMovementPatterns enemyMovementPatterns;
     private static final int WIDTH_MOVE = 250;
     private static final int HEIGHT_MOVE = 100;
 
@@ -18,17 +21,17 @@ public class Spy extends CollidingGameObject implements ShiftableGameObject {
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
      */
-    public Spy(GameView gameView, GamePlayManager gamePlayManager, double x, double y) {
+    public Spy(GameView gameView, GamePlayManager gamePlayManager, Position start, String pattern) {
         super(gameView, gamePlayManager);
-        position.updateCoordinates(x, y);
+        position.updateCoordinates(new Position(start));
         size = 0.1;
         speedInPixel = 2;
         rotation = 0;
         width = 62;
         height = 65;
         hitBoxOffsets(0, 0, 0, 0);
-        quadraticMovementPatternUse = new QuadraticMovementPatternUse(position, WIDTH_MOVE, HEIGHT_MOVE, "top-left", true);
-        targetPosition.updateCoordinates(quadraticMovementPatternUse.nextTargetPosition());
+        enemyMovementPatterns = new EnemyMovementPatterns(pattern, WIDTH_MOVE, "left", position, WIDTH_MOVE, HEIGHT_MOVE, "top-left", false);
+        targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition());
         distanceToBackground = 1;
     }
 
@@ -36,21 +39,21 @@ public class Spy extends CollidingGameObject implements ShiftableGameObject {
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof Shot) {
             gamePlayManager.destroyGameObject(this);
-        } else if (other instanceof Tank){
+        } else if (other instanceof Tank) {
             gamePlayManager.destroyGameObject(this);
         }
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Spion: " + position;
     }
 
 
     @Override
-    public void updatePosition(){
+    public void updatePosition() {
         if (position.similarTo(targetPosition)) {
-            targetPosition.updateCoordinates(quadraticMovementPatternUse.nextTargetPosition());
+            targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition());
         }
         position.moveToPosition(targetPosition, speedInPixel);
     }
@@ -58,5 +61,14 @@ public class Spy extends CollidingGameObject implements ShiftableGameObject {
     @Override
     public void addToCanvas() {
         gameView.addImageToCanvas("spybig.png", position.getX(), position.getY(), size, rotation);
+    }
+
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
+    }
+
+    public void worldShift(double pixel){
+        enemyMovementPatterns.worldShift(pixel);
     }
 }

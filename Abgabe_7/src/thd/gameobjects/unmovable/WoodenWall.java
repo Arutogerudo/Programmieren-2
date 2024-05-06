@@ -2,12 +2,14 @@ package thd.gameobjects.unmovable;
 
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
+import thd.gameobjects.base.ShiftableGameObject;
 
 /**
  * unmovable Gameobject Woodenwall (game field).
  */
-public class WoodenWall extends CollidingGameObject {
+public class WoodenWall extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
     private static final String WOODEN_WALL = "LLOOOOOO\nLLOOLLOO\nLLLLOOOO\nLLOOOOLL\nLLLLOOOO\nLLOOOOOO\nLLLLLLOO\nLLOOOOOO";
     /**
      * Crates a new game object that is able to collide.
@@ -37,5 +39,10 @@ public class WoodenWall extends CollidingGameObject {
     @Override
     public void addToCanvas() {
         gameView.addBlockImageToCanvas(WOODEN_WALL, position.getX(), position.getY(), size, rotation);
+    }
+
+    @Override
+    public boolean tryToActivate(Object info) {
+        return position.getX() < GameView.WIDTH;
     }
 }
