@@ -80,7 +80,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
                 }
             }
         } else {
-            gamePlayManager.moveWorldToRight(GameView.WIDTH);
+            gamePlayManager.moveWorldToRight(GAMEVIEW_WIDTH);
         }
     }
 
@@ -98,7 +98,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
                 }
             }
         } else {
-            gamePlayManager.moveWorldToLeft(GameView.WIDTH);
+            gamePlayManager.moveWorldToLeft(GAMEVIEW_WIDTH);
             dimension += 1;
         }
 

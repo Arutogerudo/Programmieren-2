@@ -20,6 +20,8 @@ public class Spy extends CollidingGameObject implements ShiftableGameObject, Act
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
+     * @param start           given start Position
+     * @param pattern         given movement pattern of object
      */
     public Spy(GameView gameView, GamePlayManager gamePlayManager, Position start, String pattern) {
         super(gameView, gamePlayManager);
@@ -68,7 +70,8 @@ public class Spy extends CollidingGameObject implements ShiftableGameObject, Act
         return position.getX() < GameView.WIDTH;
     }
 
-    public void worldShift(double pixel){
+    @Override
+    public void worldShift(double pixel) {
         enemyMovementPatterns.worldShift(pixel);
     }
 }

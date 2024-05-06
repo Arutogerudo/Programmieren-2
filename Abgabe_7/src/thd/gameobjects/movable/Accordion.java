@@ -17,6 +17,8 @@ public class Accordion extends CollidingGameObject implements ShiftableGameObjec
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
+     * @param start           given start Position
+     * @param pattern         given movement pattern of object
      */
     public Accordion(GameView gameView, GamePlayManager gamePlayManager, Position start, String pattern) {
         super(gameView, gamePlayManager);
@@ -32,6 +34,7 @@ public class Accordion extends CollidingGameObject implements ShiftableGameObjec
         distanceToBackground = 1;
     }
 
+    @Override
     public void worldShift(double pixel){
         enemyMovementPatterns.worldShift(pixel);
     }

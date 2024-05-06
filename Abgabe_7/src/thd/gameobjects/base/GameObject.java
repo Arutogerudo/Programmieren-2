@@ -80,10 +80,6 @@ public abstract class GameObject {
         return height;
     }
 
-    public Position getTargetPosition() {
-        return targetPosition;
-    }
-
     protected int widthOfBlockImage(String blockImage) {
         int widthBlockImage = 0;
         String[] linesOfBlockImages = blockImage.split("\n");
@@ -106,6 +102,11 @@ public abstract class GameObject {
         return distanceToBackground;
     }
 
+    /**
+     * Shifts all positions in movement pattern.
+     *
+     * @param pixel amounts of pixels of world shift
+     */
     public void worldShift(double pixel) {
 
     }

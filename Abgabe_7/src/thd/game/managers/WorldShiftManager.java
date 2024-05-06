@@ -78,9 +78,9 @@ public class WorldShiftManager extends UserControlledGameObjectPool {
 
     private void shiftGameObjects(double shiftX, double shiftY) {
         for (GameObject gameObject : shiftableGameObjects) {
+            gameObject.worldShift(shiftX);
             gameObject.getPosition().right(shiftX);
             gameObject.getPosition().down(shiftY);
-            gameObject.worldShift(shiftX);
         }
     }
 }

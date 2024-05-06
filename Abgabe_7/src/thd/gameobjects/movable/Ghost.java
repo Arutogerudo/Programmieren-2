@@ -20,6 +20,8 @@ public class Ghost extends CollidingGameObject implements ShiftableGameObject, A
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
+     * @param start           given start Position
+     * @param pattern         given movement pattern of object
      */
     public Ghost(GameView gameView, GamePlayManager gamePlayManager, Position start, String pattern) {
         super(gameView, gamePlayManager);
@@ -67,6 +69,7 @@ public class Ghost extends CollidingGameObject implements ShiftableGameObject, A
         return position.getX() < GameView.WIDTH;
     }
 
+    @Override
     public void worldShift(double pixel){
         enemyMovementPatterns.worldShift(pixel);
     }

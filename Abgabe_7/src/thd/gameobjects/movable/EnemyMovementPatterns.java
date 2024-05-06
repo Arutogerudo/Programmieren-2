@@ -3,10 +3,10 @@ package thd.gameobjects.movable;
 import thd.gameobjects.base.MovementPattern;
 import thd.gameobjects.base.Position;
 
-public class EnemyMovementPatterns extends MovementPattern {
-    LinearMovementPattern linearMovementPattern;
-    QuadraticMovementPatternUse quadraticMovementPatternUse;
-    TriangularMovementPattern triangularMovementPattern;
+class EnemyMovementPatterns extends MovementPattern {
+    private LinearMovementPattern linearMovementPattern;
+    private QuadraticMovementPatternUse quadraticMovementPatternUse;
+    private TriangularMovementPattern triangularMovementPattern;
 
     EnemyMovementPatterns(String pattern, int pixelToGo, String direction, Position start, int width, int height, String startEdge, boolean clockwise){
         if (pattern.equals("linear")) {

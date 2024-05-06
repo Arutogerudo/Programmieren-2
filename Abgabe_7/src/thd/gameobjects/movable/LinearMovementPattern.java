@@ -35,6 +35,7 @@ class LinearMovementPattern extends MovementPattern {
         return pattern[currentIndex];
     }
 
+    @Override
     protected void worldShift(double pixel){
         for (Position position: pattern) {
             position.updateCoordinates(position.getX() + pixel, position.getY());
