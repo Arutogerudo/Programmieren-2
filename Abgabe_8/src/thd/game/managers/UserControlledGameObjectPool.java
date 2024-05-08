@@ -1,5 +1,6 @@
 package thd.game.managers;
 
+import thd.game.level.Level;
 import thd.game.utilities.GameView;
 import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.*;
@@ -11,6 +12,7 @@ class UserControlledGameObjectPool {
     protected final GameView gameView;
     Tank tank;
     Scoreboard scoreboard;
+    protected Level level;
     UserControlledGameObjectPool(GameView gameView){
         this.gameView = gameView;
     }

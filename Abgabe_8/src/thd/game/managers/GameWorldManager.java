@@ -15,58 +15,16 @@ import java.util.List;
 import java.util.ListIterator;
 
 class GameWorldManager extends GamePlayManager {
-    private final String world; //51:29
-    private static final int WORLD_SCALLING_FACTOR = 25;
+    private static final int WORLD_SCALLING_FACTOR = 25; //51:29
     private LinkedList<CollidingGameObject> collidingObjects;
     private final List<GameObject> activatableGameObjects;
-    private final int worldOffsetColumns;
-    private final int worldOffsetLines;
 
     protected GameWorldManager(GameView gameView) {
         super(gameView);
-        // B - Bush, T - Tank, W - Wooden Wall, R - Radioactive Pack
-        // G - Ghost quadratic, g - Ghost triangular, p - Ghost linear
-        // A - Accordion quadratic, a - Accordion triangular, o - Accordion linear
-        // S - Spy quadratic, s - Spy triangular, z - Spy linear
-
-        world = """
-                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\s
-                BB                                                                                                 BBB\s
-                B  T                                           G   a                                               BBB\s
-                B                                                                                                   BB\s
-                B                                                                                                   BB\s
-                B                                                                                                    B\s
-                B                                                                                                    B\s
-                B                               WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBBBBBBBBBBBBB                      B\s
-                B                                                                BBBBBBBBBBBBBB                       \s
-                B                                                                            G                        \s
-                B                                                                                                     \s
-                B                                                                                                     \s
-                B                                                                                                     \s
-                B              BB                                                                                     \s
-                B              BB                 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                   B\s
-                B                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                  B\s
-                B                              BBBB  S                            BB  B  B  BB                       B\s
-                B                             BBBBB                                 BB BB BB            BB           B\s
-                B                             BBBB   R                                                  BB           B\s
-                B                            BBBBB                                                                   B\s
-                B                             BBBBB                     z                                            B\s
-                B   A                        BBBBB                                                                   B\s
-                BB                          BBBBB                                                                    B\s
-                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s""";
         tank = new Tank(gameView, this);
         scoreboard = new Scoreboard(gameView, this);
         collidingObjects = new LinkedList<>();
         this.activatableGameObjects = new LinkedList<>();
-        worldOffsetColumns = 0;
-        worldOffsetLines = 0;
-        spawnGameObjects();
-        spawnGameObjectsFromWorldString();
     }
 
     private void spawnGameObjects() {
@@ -75,11 +33,11 @@ class GameWorldManager extends GamePlayManager {
     }
 
     private void spawnGameObjectsFromWorldString() {
-        String[] lines = world.split("\\R");
+        String[] lines = level.world.split("\\R");
         for (int scalledHeight = 0; scalledHeight < lines.length; scalledHeight++) {
             for (int scalledWidth = 0; scalledWidth < lines[scalledHeight].length(); scalledWidth++) {
-                double x = (scalledWidth - worldOffsetColumns) * WORLD_SCALLING_FACTOR;
-                double y = (scalledHeight - worldOffsetLines) * WORLD_SCALLING_FACTOR;
+                double x = (scalledWidth - level.worldOffsetColumns) * WORLD_SCALLING_FACTOR;
+                double y = (scalledHeight - level.worldOffsetLines) * WORLD_SCALLING_FACTOR;
                 char character = lines[scalledHeight].charAt(scalledWidth);
                 if (character == 'B') {
                     Bush bush = new Bush(gameView, this);
@@ -194,5 +152,17 @@ class GameWorldManager extends GamePlayManager {
                 }
             }
         }
+    }
+
+    protected void initializeLevel() {
+        activatableGameObjects.clear();
+        destroyAllGameObjects();
+        spawnGameObjects();
+        spawnGameObjectsFromWorldString();
+        clearListsForPathDecisionsInGameObjects();
+    }
+
+    private void clearListsForPathDecisionsInGameObjects() {
+        tank.setCollidingGameObjectsForPathDecision(new LinkedList<>());
     }
 }

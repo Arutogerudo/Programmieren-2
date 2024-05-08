@@ -5,7 +5,7 @@ import thd.game.utilities.GameView;
 /**
  * Class to manage the game.
  */
-class GameManager extends GameWorldManager {
+class GameManager extends LevelManager {
 
     GameManager(GameView gameView) {
         super(gameView);
@@ -18,5 +18,10 @@ class GameManager extends GameWorldManager {
     }
 
     private void gameManagement() {
+    }
+
+    @Override
+    protected void initializeLevel() {
+        super.initializeLevel();
     }
 }

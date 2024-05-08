@@ -16,6 +16,7 @@ public class GameViewManager extends GameView {
         setStatusText("Lara Altgeld - Java Programmierung SS 2024");
         setWindowIcon("tigertank.png");
         changeBackgroundColor(new Color(168, 112, 47));
+        gameManager.initializeLevel();
     }
     @Override
     public void gameLoop() { // Dieser Code wird 60 mal pro Sekunde ausgeführt.
