@@ -3,8 +3,8 @@ package thd.gameobjects.movable;
 import thd.gameobjects.base.MovementPattern;
 import thd.gameobjects.base.Position;
 
-class LinearMovementPattern extends MovementPattern {
-    LinearMovementPattern(int pixelToGoWidth, int pixelToGoHeight, String direction) {
+class QuadraticMovementPattern extends MovementPattern {
+    QuadraticMovementPattern(int pixelToGoWidth, int pixelToGoHeight, String direction) {
         super(pixelToGoWidth, pixelToGoHeight, direction);
     }
 
@@ -13,19 +13,19 @@ class LinearMovementPattern extends MovementPattern {
         switch (direction) {
             case "up":
                 currentIndex = 0;
-                direction = "down";
+                direction = "right";
                 break;
             case "down":
                 currentIndex = 1;
-                direction = "up";
+                direction = "left";
                 break;
             case "left":
                 currentIndex = 2;
-                direction = "right";
+                direction = "up";
                 break;
             case "right":
                 currentIndex = 3;
-                direction = "left";
+                direction = "down";
                 break;
         }
         return new Position(referencePositions[0].getX() + pattern[currentIndex].getX(), referencePositions[0].getY() + pattern[currentIndex].getY());
