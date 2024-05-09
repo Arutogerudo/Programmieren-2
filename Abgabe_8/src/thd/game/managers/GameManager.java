@@ -18,10 +18,30 @@ class GameManager extends LevelManager {
     }
 
     private void gameManagement() {
+        if (endOfGame()) {
+            initializeGame();
+        } else if (endOfLevel()) {
+            switchToNextLevel();
+            initializeLevel();
+        }
+    }
+
+    private boolean endOfGame() {
+        return lives == 0 || (!hasNextLevel() && endOfLevel());
+    }
+
+    private boolean endOfLevel() {
+        return gameView.timer(10000, 1);
     }
 
     @Override
     protected void initializeLevel() {
         super.initializeLevel();
+    }
+
+    @Override
+    protected void initializeGame() {
+        super.initializeGame();
+        initializeLevel();
     }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 /**
  * Class to manage the gameobjects.
  */
-public class GameObjectManager extends CollisionManager {
+class GameObjectManager extends CollisionManager {
     private final List<GameObject> gameObjects;
     private final List<GameObject> gameObjectsToBeAdded;
     private final List<GameObject> gameObjectsToBeRemoved;
@@ -37,7 +37,7 @@ public class GameObjectManager extends CollisionManager {
             gameObject.updatePosition();
             gameObject.addToCanvas();
         }
-        manageCollisions(false);
+        manageCollisions(true);
     }
     private void updateLists() {
         removeFromGameObjects();

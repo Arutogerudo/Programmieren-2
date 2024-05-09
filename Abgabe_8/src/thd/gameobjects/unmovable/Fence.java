@@ -7,23 +7,22 @@ import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
- * movable Gameobject StartRamp (game field).
+ * unmovable Gameobject Bush (game field).
  */
-public class StartRamp extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+public class Fence extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject{
 
     /**
-     * Creates a StartRamp in the given gameview.
+     * Creates a fence in the given gameview.
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
      */
-    public StartRamp(GameView gameView, GamePlayManager gamePlayManager) {
+    public Fence(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        size = 0.12;
+        size = 0.1;
         rotation = 0;
-        width = 83;
-        height = 157;
-        hitBoxOffsets(0, 0, 0, 0);
+        width = 25;
+        height = 25;
         distanceToBackground = 0;
     }
 
@@ -34,12 +33,12 @@ public class StartRamp extends CollidingGameObject implements ShiftableGameObjec
 
     @Override
     public String toString() {
-        return "Start Ramp: " + position;
+        return "Fence: " + position;
     }
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("startramp.png", position.getX(), position.getY(), size, rotation);
+        gameView.addImageToCanvas("fenceairport.png", position.getX(), position.getY(), size, rotation);
     }
 
     @Override

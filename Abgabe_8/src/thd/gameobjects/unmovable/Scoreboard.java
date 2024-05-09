@@ -41,6 +41,8 @@ public class Scoreboard extends GameObject {
         gameView.addTextToCanvas("" + gamePlayManager.getAmmunition(), X_COORDINATE + GameView.WIDTH / 8.0 + 200, Y_COORDINATE + 30, 25, true, Color.WHITE, 0);
         gameView.addTextToCanvas("PACKS:", X_COORDINATE + GameView.WIDTH / 2.0, Y_COORDINATE + 30, 25, true, Color.CYAN, 0);
         gameView.addTextToCanvas("" + gamePlayManager.getPacks(), X_COORDINATE + GameView.WIDTH / 2.0 + 110, Y_COORDINATE + 30, 25, true, Color.WHITE, 0);
+        gameView.addTextToCanvas("LOCATION:", X_COORDINATE, Y_COORDINATE + 60, 25, true, Color.WHITE, 0);
+        gameView.addTextToCanvas("" + gamePlayManager.accessLevelName(), X_COORDINATE + GAMEVIEW_WIDTH/8.0, Y_COORDINATE + 60, 25, true, Color.WHITE, 0);
     }
 
 }

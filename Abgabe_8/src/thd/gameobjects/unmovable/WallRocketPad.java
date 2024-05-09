@@ -10,19 +10,22 @@ import thd.gameobjects.base.ShiftableGameObject;
  * unmovable Gameobject Wall in Rocket Pad (game field).
  */
 public class WallRocketPad extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
-    private static final String WALL_ROCKET_PAD = "LLLL\nOOOO\nLLLL\nWWLL\nLLLL\nLLWW\nLLLL\nWWLL\nLLLL";
+    private String alignment;
+    private double sizeSide;
     /**
      * Crates a new game object that is able to collide.
      *
      * @param gameView        Window to show the game object on.
      * @param gamePlayManager Controls the game play.
      */
-    public WallRocketPad(GameView gameView, GamePlayManager gamePlayManager) {
+    public WallRocketPad(GameView gameView, GamePlayManager gamePlayManager, String alignment) {
         super(gameView, gamePlayManager);
-        size = 3;
+        this.alignment = alignment;
+        size = 0.1;
+        sizeSide = 0.09;
         rotation = 0;
-        width = widthOfBlockImage(WALL_ROCKET_PAD) * size;
-        height = heightOfBlockImage(WALL_ROCKET_PAD) * size;
+        width = 22;
+        height = 22;
         hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
     }
@@ -38,7 +41,15 @@ public class WallRocketPad extends CollidingGameObject implements ShiftableGameO
 
     @Override
     public void addToCanvas() {
-        gameView.addBlockImageToCanvas(WALL_ROCKET_PAD, position.getX(), position.getY(), size, rotation);
+        if (alignment.equals("top")) {
+            gameView.addImageToCanvas("wallrocketpadup.png", position.getX(), position.getY(), size, rotation);
+        } else if (alignment.equals("bottom")) {
+            gameView.addImageToCanvas("wallrocketpaddown.png", position.getX(), position.getY(), size, rotation);
+        } else if (alignment.equals("left")) {
+            gameView.addImageToCanvas("wallrocketpadleft.png", position.getX(), position.getY(), sizeSide, rotation);
+        } else if (alignment.equals("right")) {
+            gameView.addImageToCanvas("wallrocketpadright.png", position.getX(), position.getY(), sizeSide, rotation);
+        }
     }
 
     @Override

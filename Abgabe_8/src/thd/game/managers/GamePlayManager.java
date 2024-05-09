@@ -8,7 +8,6 @@ import thd.gameobjects.base.GameObject;
  */
 public class GamePlayManager extends WorldShiftManager {
     private final GameObjectManager gameObjectManager;
-    private static final int LIVES = 3;
     private static final int AMMUNITION = 5;
     protected int points;
     protected int lives;
@@ -19,8 +18,6 @@ public class GamePlayManager extends WorldShiftManager {
     protected GamePlayManager(GameView gameView) {
         super(gameView);
         gameObjectManager = new GameObjectManager();
-        lives = LIVES;
-        points = 0;
         ammunition = AMMUNITION;
         packs = 0;
         highscore = 0;
@@ -139,5 +136,9 @@ public class GamePlayManager extends WorldShiftManager {
      */
     public int getHighscore(){
         return highscore;
+    }
+
+    public String accessLevelName(){
+        return level.name;
     }
 }

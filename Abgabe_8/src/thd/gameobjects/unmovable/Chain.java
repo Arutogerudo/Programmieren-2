@@ -7,22 +7,22 @@ import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
- * movable Gameobject StartRamp (game field).
+ * movable Gameobject Chain (game field).
  */
-public class StartRamp extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+public class Chain extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
     /**
-     * Creates a StartRamp in the given gameview.
+     * Creates a Rocket in the given gameview.
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
      */
-    public StartRamp(GameView gameView, GamePlayManager gamePlayManager) {
+    public Chain(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        size = 0.12;
+        size = 0.1;
         rotation = 0;
-        width = 83;
-        height = 157;
+        width = 128;
+        height = 25;
         hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
     }
@@ -33,13 +33,13 @@ public class StartRamp extends CollidingGameObject implements ShiftableGameObjec
     }
 
     @Override
-    public String toString() {
-        return "Start Ramp: " + position;
+    public String toString(){
+        return "Chain: " + position;
     }
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("startramp.png", position.getX(), position.getY(), size, rotation);
+        gameView.addImageToCanvas("chainrocketpad.png", position.getX(), position.getY(), size, rotation);
     }
 
     @Override

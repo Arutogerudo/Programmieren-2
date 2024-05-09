@@ -11,7 +11,7 @@ import thd.gameobjects.base.ShiftableGameObject;
  */
 public class BlackWallRocketPad extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
 
-    private static final String BLACK_WALL = "LLLL\nLL  \n  LL\nLL  \nLLLL";
+    private static final String BLACK_WALL = "LLLLLLLLL\nLL  LL   \n  LL  LL \nLL  LL   \nLLLLLLLLL";
 
     /**
      * Crates a new game object that is able to collide.

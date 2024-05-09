@@ -49,7 +49,7 @@ class GameWorldManager extends GamePlayManager {
                 } else if (character == 'g') {
                     spawnGameObject(new Ghost(gameView, this, new Position(x, y), 700, 250, "right", "triangular"));
                 } else if (character == 'p') {
-                    spawnGameObject(new Ghost(gameView, this, new Position(x, y), 300, 0, "right", "linear"));
+                    spawnGameObject(new Ghost(gameView, this, new Position(x, y), 300, 0, "down", "linear"));
                 } else if (character == 'A') {
                     spawnGameObject(new Accordion(gameView, this, new Position(x, y), 250, 250, "up", "quadratic"));
                 } else if (character == 'a') {
@@ -74,12 +74,97 @@ class GameWorldManager extends GamePlayManager {
                     RadioactivePack radioactivePack = new RadioactivePack(gameView, this);
                     radioactivePack.getPosition().updateCoordinates(x, y);
                     spawnGameObject(radioactivePack);
+                } else if (character == 'b') {
+                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "left");
+                    collidingObjects.add(wallRocketPad);
+                    wallRocketPad.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPad);
+                } else if (character == 'C') {
+                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "right");
+                    collidingObjects.add(wallRocketPad);
+                    wallRocketPad.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPad);
+                } else if (character == 'c') {
+                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "top");
+                    collidingObjects.add(wallRocketPad);
+                    wallRocketPad.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPad);
+                } else if (character == 'D') {
+                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "bottom");
+                    collidingObjects.add(wallRocketPad);
+                    wallRocketPad.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPad);
+                } else if (character == 'd') {
+                    Rocket rocket = new Rocket(gameView, this);
+                    collidingObjects.add(rocket);
+                    rocket.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(rocket);
+                } else if (character == 'E') {
+                    Chain chain = new Chain(gameView, this);
+                    collidingObjects.add(chain);
+                    chain.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(chain);
+                } else if (character == 'e') {
+                    BlackWallRocketPad blackWallRocketPad = new BlackWallRocketPad(gameView, this);
+                    collidingObjects.add(blackWallRocketPad);
+                    blackWallRocketPad.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(blackWallRocketPad);
+                } else if (character == 'F') {
+                    StartRamp startRamp = new StartRamp(gameView, this);
+                    collidingObjects.add(startRamp);
+                    startRamp.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(startRamp);
+                } else if (character == 'f') {
+                    Pilons pilons = new Pilons(gameView, this);
+                    collidingObjects.add(pilons);
+                    pilons.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(pilons);
+                }  else if (character == 'H') {
+                    StoneWall stoneWall = new StoneWall(gameView, this);
+                    collidingObjects.add(stoneWall);
+                    stoneWall.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(stoneWall);
+                }  else if (character == 'h') {
+                    CentrelineRunway centrelineRunway = new CentrelineRunway(gameView, this);
+                    collidingObjects.add(centrelineRunway);
+                    centrelineRunway.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(centrelineRunway);
+                }  else if (character == 'I') {
+                    Fence fence = new Fence(gameView, this);
+                    collidingObjects.add(fence);
+                    fence.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(fence);
+                }  else if (character == 'i') {
+                    Jet jet = new Jet(gameView, this);
+                    collidingObjects.add(jet);
+                    jet.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(jet);
+                }  else if (character == 'J') {
+                    Parkbox parkbox = new Parkbox(gameView, this);
+                    collidingObjects.add(parkbox);
+                    parkbox.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(parkbox);
+                }  else if (character == 'j') {
+                    SafetyBox safetyBox = new SafetyBox(gameView, this);
+                    collidingObjects.add(safetyBox);
+                    safetyBox.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(safetyBox);
+                }  else if (character == 'K') {
+                    WallAirport wallAirport = new WallAirport(gameView, this);
+                    collidingObjects.add(wallAirport);
+                    wallAirport.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallAirport);
+                }  else if (character == 'k') {
+                    WallRunway wallRunway = new WallRunway(gameView, this);
+                    collidingObjects.add(wallRunway);
+                    wallRunway.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRunway);
                 }
             }
         }
         tank.setCollidingGameObjectsForPathDecision(collidingObjects);
     }
-
+    // d - rocket, E - chain rocket pad, e - black wall rocket pad, F - StartRamp, f - pilons
     private void addActivatableGameObject(GameObject gameObject) {
         activatableGameObjects.add(gameObject);
         addToShiftableGameObjectsIfShiftable(gameObject);
@@ -140,8 +225,8 @@ class GameWorldManager extends GamePlayManager {
                     spawnGameObject(gameObject);
                     iterator.remove();
                 }
-            } else if (gameObject instanceof WallRocketPad wallRocketPad) {
-                if (wallRocketPad.tryToActivate(null)) {
+            } else if (gameObject instanceof WallRocketPad wallRocketPadDown) {
+                if (wallRocketPadDown.tryToActivate(null)) {
                     spawnGameObject(gameObject);
                     iterator.remove();
                 }
