@@ -21,7 +21,8 @@ public class WallAirport extends CollidingGameObject implements ShiftableGameObj
         super(gameView, gamePlayManager);
         size = 0.1;
         rotation = 0;
-        width = 25;
+        singleWidth = 25;
+        width = singleWidth * 52;
         height = 22;
         distanceToBackground = 0;
     }
@@ -38,7 +39,9 @@ public class WallAirport extends CollidingGameObject implements ShiftableGameObj
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("wallairport.png", position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < 52; orderplace++) {
+            gameView.addImageToCanvas("wallairport.png", position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
+        }
     }
 
     @Override

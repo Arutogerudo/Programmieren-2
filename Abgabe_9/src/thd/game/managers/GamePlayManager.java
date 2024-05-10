@@ -9,8 +9,8 @@ import thd.gameobjects.base.GameObject;
 public class GamePlayManager extends WorldShiftManager {
     private final GameObjectManager gameObjectManager;
     private static final int AMMUNITION = 5;
-    protected int points;
-    protected int lives;
+    int points;
+    int lives;
     private int ammunition;
     private int packs;
     private final int highscore;

@@ -4,10 +4,7 @@ import thd.game.utilities.GameView;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.GameObject;
 import thd.gameobjects.base.Position;
-import thd.gameobjects.movable.Accordion;
-import thd.gameobjects.movable.Ghost;
-import thd.gameobjects.movable.Spy;
-import thd.gameobjects.movable.Tank;
+import thd.gameobjects.movable.*;
 import thd.gameobjects.unmovable.*;
 
 import java.util.LinkedList;
@@ -16,7 +13,7 @@ import java.util.ListIterator;
 
 class GameWorldManager extends GamePlayManager {
     private static final int WORLD_SCALLING_FACTOR = 25; //51:29
-    private LinkedList<CollidingGameObject> collidingObjects;
+    private final LinkedList<CollidingGameObject> collidingObjects;
     private final List<GameObject> activatableGameObjects;
 
     protected GameWorldManager(GameView gameView) {
@@ -30,6 +27,7 @@ class GameWorldManager extends GamePlayManager {
     private void spawnGameObjects() {
         spawnGameObject(scoreboard);
         spawnGameObject(tank);
+        spawnGameObject(new Jimmy(gameView, this));
     }
 
     private void spawnGameObjectsFromWorldString() {
@@ -40,7 +38,17 @@ class GameWorldManager extends GamePlayManager {
                 double y = (scalledHeight - level.worldOffsetLines) * WORLD_SCALLING_FACTOR;
                 char character = lines[scalledHeight].charAt(scalledWidth);
                 if (character == 'B') {
-                    Bush bush = new Bush(gameView, this);
+                    Bush bush = new Bush(gameView, this, 1);
+                    bush.getPosition().updateCoordinates(x, y);
+                    collidingObjects.add(bush);
+                    spawnGameObject(bush);
+                } else if (character == 'L') {
+                    Bush bush = new Bush(gameView, this, 103);
+                    bush.getPosition().updateCoordinates(x, y);
+                    collidingObjects.add(bush);
+                    spawnGameObject(bush);
+                } else if (character == 'l') {
+                    Bush bush = new Bush(gameView, this, 4);
                     bush.getPosition().updateCoordinates(x, y);
                     collidingObjects.add(bush);
                     spawnGameObject(bush);
@@ -57,14 +65,11 @@ class GameWorldManager extends GamePlayManager {
                 } else if (character == 'o') {
                     spawnGameObject(new Accordion(gameView, this, new Position(x, y), 300, 0, "left", "linear"));
                 } else if (character == 'S') {
-                    Spy spy = new Spy(gameView, this, new Position(x, y), 250, 100, "right", "quadratic");
-                    spawnGameObject(spy);
+                    spawnGameObject(new Spy(gameView, this, new Position(x, y), 250, 100, "right", "quadratic"));
                 } else if (character == 's') {
-                    Spy spy = new Spy(gameView, this, new Position(x, y), 700, 250, "left", "triangular");
-                    spawnGameObject(spy);
+                    spawnGameObject(new Spy(gameView, this, new Position(x, y), 700, 250, "left", "triangular"));
                 } else if (character == 'z') {
-                    Spy spy = new Spy(gameView, this, new Position(x, y), 0, 300, "up", "linear");
-                    spawnGameObject(spy);
+                    spawnGameObject(new Spy(gameView, this, new Position(x, y), 0, 300, "up", "linear"));
                 } else if (character == 'W') {
                     WoodenWall woodenWall = new WoodenWall(gameView, this);
                     collidingObjects.add(woodenWall);
@@ -75,25 +80,25 @@ class GameWorldManager extends GamePlayManager {
                     radioactivePack.getPosition().updateCoordinates(x, y);
                     spawnGameObject(radioactivePack);
                 } else if (character == 'b') {
-                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "left");
-                    collidingObjects.add(wallRocketPad);
-                    wallRocketPad.getPosition().updateCoordinates(x, y);
-                    spawnGameObject(wallRocketPad);
+                    WallRocketPadLeft wallRocketPadLeft = new WallRocketPadLeft(gameView, this);
+                    collidingObjects.add(wallRocketPadLeft);
+                    wallRocketPadLeft.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPadLeft);
                 } else if (character == 'C') {
-                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "right");
-                    collidingObjects.add(wallRocketPad);
-                    wallRocketPad.getPosition().updateCoordinates(x, y);
-                    spawnGameObject(wallRocketPad);
+                    WallRocketPadRight wallRocketPadRight = new WallRocketPadRight(gameView, this);
+                    collidingObjects.add(wallRocketPadRight);
+                    wallRocketPadRight.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPadRight);
                 } else if (character == 'c') {
-                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "top");
-                    collidingObjects.add(wallRocketPad);
-                    wallRocketPad.getPosition().updateCoordinates(x, y);
-                    spawnGameObject(wallRocketPad);
+                    WallRocketPadTop wallRocketPadTop = new WallRocketPadTop(gameView, this);
+                    collidingObjects.add(wallRocketPadTop);
+                    wallRocketPadTop.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPadTop);
                 } else if (character == 'D') {
-                    WallRocketPad wallRocketPad = new WallRocketPad(gameView, this, "bottom");
-                    collidingObjects.add(wallRocketPad);
-                    wallRocketPad.getPosition().updateCoordinates(x, y);
-                    spawnGameObject(wallRocketPad);
+                    WallRocketPadDown wallRocketPadDown = new WallRocketPadDown(gameView, this);
+                    collidingObjects.add(wallRocketPadDown);
+                    wallRocketPadDown.getPosition().updateCoordinates(x, y);
+                    spawnGameObject(wallRocketPadDown);
                 } else if (character == 'd') {
                     Rocket rocket = new Rocket(gameView, this);
                     collidingObjects.add(rocket);
@@ -226,8 +231,8 @@ class GameWorldManager extends GamePlayManager {
                     spawnGameObject(gameObject);
                     iterator.remove();
                 }
-            } else if (gameObject instanceof WallRocketPad wallRocketPadDown) {
-                if (wallRocketPadDown.tryToActivate(null)) {
+            } else if (gameObject instanceof WallRocketPadLeft wallRocketPadLeftDown) {
+                if (wallRocketPadLeftDown.tryToActivate(null)) {
                     spawnGameObject(gameObject);
                     iterator.remove();
                 }
@@ -244,8 +249,8 @@ class GameWorldManager extends GamePlayManager {
         activatableGameObjects.clear();
         destroyAllGameObjects();
         spawnGameObjects();
-        spawnGameObjectsFromWorldString();
         clearListsForPathDecisionsInGameObjects();
+        spawnGameObjectsFromWorldString();
     }
 
     private void clearListsForPathDecisionsInGameObjects() {

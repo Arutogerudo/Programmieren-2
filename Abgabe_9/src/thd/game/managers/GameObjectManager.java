@@ -11,7 +11,7 @@ class GameObjectManager extends CollisionManager {
     private final List<GameObject> gameObjects;
     private final List<GameObject> gameObjectsToBeAdded;
     private final List<GameObject> gameObjectsToBeRemoved;
-    private static final int MAXIMUM_NUMBER_OF_GAME_OBJECTS = 1000;
+    private static final int MAXIMUM_NUMBER_OF_GAME_OBJECTS = 500;
 
     GameObjectManager(){
         gameObjects = new LinkedList<>();
@@ -37,7 +37,7 @@ class GameObjectManager extends CollisionManager {
             gameObject.updatePosition();
             gameObject.addToCanvas();
         }
-        manageCollisions(true);
+        manageCollisions(false);
     }
     private void updateLists() {
         removeFromGameObjects();

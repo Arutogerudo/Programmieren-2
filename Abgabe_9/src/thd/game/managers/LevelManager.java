@@ -39,6 +39,7 @@ class LevelManager extends GameWorldManager {
         } else {
             throw new NoMoreLevelsAvailableException("You mastered all levels!");
         }
+        shiftCounterPerLevel = 0;
     }
 
     protected void initializeGame() {

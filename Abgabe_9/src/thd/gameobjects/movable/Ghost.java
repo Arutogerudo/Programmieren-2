@@ -8,6 +8,16 @@ import thd.gameobjects.base.Position;
  * movable Gameobject Ghost (enemy).
  */
 public class Ghost extends Enemy {
+    private enum State {
+        SMALL("ghostsmall.png"), BIG("ghostbig.png");
+        private String image;
+
+        State(String image){
+            this.image = image;
+        }
+    }
+
+    private State currentState;
 
     /**
      * Creates a ghost in the given gameview.
@@ -32,6 +42,7 @@ public class Ghost extends Enemy {
         enemyMovementPatterns = new EnemyMovementPatterns(pattern, pixelToGoWidth, pixelToGoHeight, direction);
         targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition(position));
         distanceToBackground = 1;
+        currentState = State.SMALL;
     }
 
     @Override
@@ -48,7 +59,30 @@ public class Ghost extends Enemy {
     }
 
     @Override
+    public void updateStatus(){
+        switch (currentState) {
+            case SMALL:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "ghostsmall.png";
+                break;
+            case BIG:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "ghostbig.png";
+                break;
+        }
+    }
+
+    private void switchToNextState() {
+        int nextState = (currentState.ordinal() + 1) % Ghost.State.values().length;
+        currentState = Ghost.State.values()[nextState];
+    }
+
+    @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("ghostsmall.png", position.getX(), position.getY(), size, rotation);
+        gameView.addImageToCanvas(currentState.image, position.getX(), position.getY(), size, rotation);
     }
 }

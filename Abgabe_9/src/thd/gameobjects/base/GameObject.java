@@ -16,6 +16,8 @@ public abstract class GameObject {
     protected double speedInPixel;
     protected double rotation;
     protected double size;
+    protected double singleWidth;
+    protected double singleHeight;
     protected double width;
     protected double height;
     protected final GamePlayManager gamePlayManager;

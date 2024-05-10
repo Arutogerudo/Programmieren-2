@@ -1,5 +1,6 @@
 package thd.game.managers;
 
+import thd.game.level.Level3;
 import thd.game.utilities.GameView;
 
 /**
@@ -31,7 +32,17 @@ class GameManager extends LevelManager {
     }
 
     private boolean endOfLevel() {
-        return gameView.timer(10000, 1);
+        if (level instanceof Level3) {
+            if (shiftCounterPerLevel == 3) {
+                return true;
+            }
+            return false;
+        } else {
+            if (shiftCounterPerLevel == 2) {
+                return true;
+            }
+            return false;
+        }
     }
 
     @Override
