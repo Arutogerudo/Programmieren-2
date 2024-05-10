@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+    <option name="SCOPE_TYPE" value="4" />
+  </component>
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Abgabe_1:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5cbf0e61-b036-4210-9637-469d5f249cd7" name="Changes" comment="Abgabe 7">
+      <change afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Enemy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/NewLinearMovementPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/game/managers/WorldShiftManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/game/managers/WorldShiftManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/base/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/base/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/base/MovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/base/MovementPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Accordion.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Accordion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/EnemyMovementPatterns.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/EnemyMovementPatterns.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Ghost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Ghost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/LinearMovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/LinearMovementPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/QuadraticMovementPatternUse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/QuadraticMovementPatternUse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Shot.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Shot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Spy.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/Spy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/TriangularMovementPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/Abgabe_7/src/thd/gameobjects/movable/TriangularMovementPattern.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2dxC2NppKObdP8Bt8mRR1RUmRaP" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Lara/OneDrive - Technische Hochschule Deggendorf/Studium/Semester 2/Programmierung 2/Programmierung 2/Abgabe_7/src/thd/game/bin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lara\OneDrive - Technische Hochschule Deggendorf\Studium\Semester 2\Programmierung 2\Programmierung 2\Abgabe_7\src\thd\game\bin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Lara\OneDrive - Technische Hochschule Deggendorf\Studium\Semester 2\Programmierung 2\Programmierung 2\Abgabe_5\src" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="thd.gameobjects.base" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="thd.gameobjects.unmovable" />
+      <recent name="thd.gameobjects.movable" />
+      <recent name="game" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="StartGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="thd.game.bin.StartGame" />
+      <module name="Abgabe_7" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="thd.game.bin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.StartGame" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5cbf0e61-b036-4210-9637-469d5f249cd7" name="Changes" comment="" />
+      <created>1710940136867</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1710940136867</updated>
+      <workItem from="1710940137886" duration="6162000" />
+      <workItem from="1711040823051" duration="261000" />
+      <workItem from="1711092474505" duration="23000" />
+      <workItem from="1711205643456" duration="38000" />
+      <workItem from="1711313115301" duration="13454000" />
+      <workItem from="1711429312644" duration="10431000" />
+      <workItem from="1712682999172" duration="4000" />
+      <workItem from="1713074636291" duration="12089000" />
+      <workItem from="1713118011724" duration="786000" />
+      <workItem from="1713175256864" duration="793000" />
+      <workItem from="1713189282237" duration="11534000" />
+      <workItem from="1713244445956" duration="10934000" />
+      <workItem from="1713797972435" duration="48000" />
+      <workItem from="1714064561960" duration="35763000" />
+      <workItem from="1714382388137" duration="4985000" />
+      <workItem from="1714419068896" duration="640000" />
+      <workItem from="1714419774816" duration="65000" />
+      <workItem from="1714419846985" duration="1403000" />
+      <workItem from="1714722012404" duration="314000" />
+      <workItem from="1714722504346" duration="848000" />
+      <workItem from="1714724208152" duration="20000" />
+      <workItem from="1715083737836" duration="6177000" />
+      <workItem from="1715163387110" duration="1061000" />
+    </task>
+    <task id="LOCAL-00001" summary="Abgabe 7 kommentar geändert">
+      <option name="closed" value="true" />
+      <created>1714421313806</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714421313806</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Abgabe 7">
+      <option name="closed" value="true" />
+      <created>1715026615942</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1715026615942</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Abgabe 7">
+      <option name="closed" value="true" />
+      <created>1715027631944</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1715027631944</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Abgabe 7 kommentar geändert" />
+    <MESSAGE value="Abgabe 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="Abgabe 7" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Abgabe_6/src/thd/gameobjects/movable/Ghost.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
