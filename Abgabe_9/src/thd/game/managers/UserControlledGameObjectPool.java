@@ -13,6 +13,7 @@ class UserControlledGameObjectPool {
     Tank tank;
     Scoreboard scoreboard;
     protected Level level;
+    int shiftCounterPerLevel;
     UserControlledGameObjectPool(GameView gameView){
         this.gameView = gameView;
     }
@@ -29,7 +30,7 @@ class UserControlledGameObjectPool {
             tank.left();
         } else if (keyCode == KeyEvent.VK_D && !wasdKey) {
             wasdKey = true;
-            tank.right();
+            shiftCounterPerLevel = tank.right(shiftCounterPerLevel);
         } else if (keyCode == KeyEvent.VK_W && !wasdKey) {
             wasdKey = true;
             tank.up();

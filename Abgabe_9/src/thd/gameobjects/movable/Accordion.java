@@ -8,8 +8,16 @@ import thd.gameobjects.base.*;
  * movable Gameobject Accordion (enemy).
  */
 public class Accordion extends Enemy {
-    private static final int WIDTH_MOVE = 200;
-    private static final int HEIGHT_MOVE = 200;
+    private enum State {
+        SMALL("accordionsmall.png"), BIG("accordionbig.png");
+        private String image;
+
+        State(String image){
+            this.image = image;
+        }
+    }
+
+    private State currentState;
 
     /**
      * Creates a Accordion in the given gameview.
@@ -34,7 +42,8 @@ public class Accordion extends Enemy {
         hitBoxOffsets(0, 0, 0, 0);
         enemyMovementPatterns = new EnemyMovementPatterns(pattern, pixelToGoWidth, pixelToGoHeight, direction);
         targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition(position));
-        distanceToBackground = 1;
+        distanceToBackground = 3;
+        currentState = State.SMALL;
     }
 
 
@@ -52,7 +61,30 @@ public class Accordion extends Enemy {
     }
 
     @Override
+    public void updateStatus(){
+        switch (currentState) {
+            case SMALL:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "accordionsmall.png";
+                break;
+            case BIG:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "accordionbig.png";
+                break;
+        }
+    }
+
+    private void switchToNextState() {
+        int nextState = (currentState.ordinal() + 1) % Accordion.State.values().length;
+        currentState = Accordion.State.values()[nextState];
+    }
+
+    @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("accordionsmall.png", position.getX(), position.getY(), size, rotation);
+        gameView.addImageToCanvas(currentState.image, position.getX(), position.getY(), size, rotation);
     }
 }

@@ -18,6 +18,8 @@ public abstract class GameObject {
     protected double size;
     protected double width;
     protected double height;
+    protected double singleWidth;
+    protected double singleHeight;
     protected final GamePlayManager gamePlayManager;
     protected static final double GAMEVIEW_WIDTH = 1280;
     protected static final double GAMEVIEW_HEIGHT = 720;

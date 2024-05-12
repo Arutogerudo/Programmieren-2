@@ -9,8 +9,7 @@ import thd.gameobjects.base.ShiftableGameObject;
 /**
  * unmovable Gameobject Wall in Rocket Pad (game field).
  */
-public class WallRocketPad extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
-    private String alignment;
+public class WallRocketPadTop extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
     private double sizeSide;
 
     /**
@@ -18,15 +17,14 @@ public class WallRocketPad extends CollidingGameObject implements ShiftableGameO
      *
      * @param gameView        Window to show the game object on.
      * @param gamePlayManager Controls the game play.
-     * @param alignment       the alignment where the wall is
      */
-    public WallRocketPad(GameView gameView, GamePlayManager gamePlayManager, String alignment) {
+    public WallRocketPadTop(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
-        this.alignment = alignment;
         size = 0.1;
         sizeSide = 0.09;
         rotation = 0;
-        width = 22;
+        singleWidth = 24;
+        width = singleWidth * 51;
         height = 22;
         hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
@@ -44,14 +42,8 @@ public class WallRocketPad extends CollidingGameObject implements ShiftableGameO
 
     @Override
     public void addToCanvas() {
-        if (alignment.equals("top")) {
-            gameView.addImageToCanvas("wallrocketpadup.png", position.getX(), position.getY(), size, rotation);
-        } else if (alignment.equals("bottom")) {
-            gameView.addImageToCanvas("wallrocketpaddown.png", position.getX(), position.getY(), size, rotation);
-        } else if (alignment.equals("left")) {
-            gameView.addImageToCanvas("wallrocketpadleft.png", position.getX(), position.getY(), sizeSide, rotation);
-        } else if (alignment.equals("right")) {
-            gameView.addImageToCanvas("wallrocketpadright.png", position.getX(), position.getY(), sizeSide, rotation);
+        for (int orderplace = 0; orderplace < 51; orderplace++) {
+            gameView.addImageToCanvas("wallrocketpadup.png", position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
         }
     }
 

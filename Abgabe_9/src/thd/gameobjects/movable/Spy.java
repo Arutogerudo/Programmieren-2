@@ -8,6 +8,16 @@ import thd.gameobjects.base.Position;
  * movable Gameobject Spy (enemy).
  */
 public class Spy extends Enemy {
+    private enum State {
+        SMALL("spysmall.png"), BIG("spybig.png");
+        private String image;
+
+        State(String image){
+            this.image = image;
+        }
+    }
+
+    private State currentState;
 
     /**
      * Creates a spy in the given gameview.
@@ -32,6 +42,7 @@ public class Spy extends Enemy {
         enemyMovementPatterns = new EnemyMovementPatterns(pattern, pixelToGoWidth, pixelToGoHeight, direction);
         targetPosition.updateCoordinates(enemyMovementPatterns.nextTargetPosition(position));
         distanceToBackground = 1;
+        currentState = State.SMALL;
     }
 
     @Override
@@ -49,7 +60,30 @@ public class Spy extends Enemy {
     }
 
     @Override
+    public void updateStatus(){
+        switch (currentState) {
+            case SMALL:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "spysmall.png";
+                break;
+            case BIG:
+                if (gameView.timer(200, this)) {
+                    switchToNextState();
+                }
+                currentState.image = "spybig.png";
+                break;
+        }
+    }
+
+    private void switchToNextState() {
+        int nextState = (currentState.ordinal() + 1) % Spy.State.values().length;
+        currentState = Spy.State.values()[nextState];
+    }
+
+    @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("spybig.png", position.getX(), position.getY(), size, rotation);
+        gameView.addImageToCanvas(currentState.image, position.getX(), position.getY(), size, rotation);
     }
 }

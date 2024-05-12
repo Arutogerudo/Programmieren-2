@@ -24,7 +24,8 @@ public class StoneWall extends CollidingGameObject implements ShiftableGameObjec
         size = 0.1;
         rotation = 0;
         width = 30;
-        height = 25;
+        height = 25 * 18;
+        singleHeight = 25;
         distanceToBackground = 0;
     }
 
@@ -40,7 +41,9 @@ public class StoneWall extends CollidingGameObject implements ShiftableGameObjec
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("stonewall.png", position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < 18; orderplace++) {
+            gameView.addImageToCanvas("stonewall.png", position.getX(), position.getY() + orderplace * singleHeight, size, rotation);
+        }
     }
 
     @Override

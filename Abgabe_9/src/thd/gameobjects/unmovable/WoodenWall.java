@@ -21,7 +21,8 @@ public class WoodenWall extends CollidingGameObject implements ShiftableGameObje
         super(gameView, gamePlayManager);
         size = 3.2;
         rotation = 0;
-        width = widthOfBlockImage(WOODEN_WALL) * size;
+        singleWidth = widthOfBlockImage(WOODEN_WALL) * size;
+        width = singleWidth * 19;
         height = heightOfBlockImage(WOODEN_WALL) * size;
         hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
@@ -38,7 +39,9 @@ public class WoodenWall extends CollidingGameObject implements ShiftableGameObje
 
     @Override
     public void addToCanvas() {
-        gameView.addBlockImageToCanvas(WOODEN_WALL, position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < 19; orderplace++) {
+            gameView.addBlockImageToCanvas(WOODEN_WALL, position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
+        }
     }
 
     @Override

@@ -20,36 +20,37 @@ public class Level1 extends Level {
         // b - left wall rocket pad, C - right wall rocket pad; c - top wall rocket pad, D - bottom wall rocket pad
         // d - rocket, E - chain rocket pad, e - black wall rocket pad, F - StartRamp, f - pilons, H - stone wall
         // h - centreline runway, I - Fence, i - Jet, J - Parkbox, j - safety box, K - Wall Airport, k - Wall Runway
+        // L - Bush complete forest, l - 4 Bushes
         world = """
-                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\s
-                BB                                                                                                 BBB\s
-                B  T                                           G   a                                               BBB\s
-                B                                                                                                   BB\s
-                B                                                                                                   BB\s
-                B                                                                                                    B\s
-                B                                                                                                    B\s
-                B                               WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWBBBBBBBBBBBBBB                      B\s
-                B                                                                BBBBBBBBBBBBBB                       \s
-                B                                                                            G                        \s
-                B                                                                                                     \s
-                B                                                                                                     \s
-                B                                                                                                     \s
-                B              BB                                                                                     \s
-                B              BB                 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                   B\s
-                B                                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB                                  B\s
-                B                              BBBB  S                            BB  B  B  BB                       B\s
-                B                             BBBBB                                 BB BB BB            BB           B\s
-                B                             BBBB   R                                                  BB           B\s
-                B                            BBBBB                                                                   B\s
-                B                             BBBBB                     z                                            B\s
-                B   A                        BBBBB                                                                   B\s
-                BB                          BBBBB                                                                    B\s
-                BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB\s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s
-                                                                                                                      \s""";
+                L                                                                                                      \s
+                BB                                                                                                 l   \s
+                B  T                                           G   a                                               l   \s
+                B                                                                                                   BBB\s
+                B                                                                                                   BBB\s
+                B                                                                                                    BB\s
+                B                                                                                                    BB\s
+                B                               W                  W             l   l   l   BB                      BB\s
+                B                                                                l   l   l   BB                        \s
+                B                                                                            G                         \s
+                B                                                                                                      \s
+                B                                                                                                      \s
+                B                                                                                                      \s
+                B              BB                                                                                      \s
+                B              BB                 l   l   l   l   l   l   l   l                                      BB\s
+                B                                l   l   l   l   l   l   l   l   BB                                  BB\s
+                B                              l     S                            BB  B  B  BB                       BB\s
+                B                             l   B                                 BB BB BB            BB           BB\s
+                B                             l      R                                                  BB           BB\s
+                B                            Bl                                                                      BB\s
+                B                             Bl                        z                                            BB\s
+                B   A                        Bl                                                                      BB\s
+                BB                          Bl                                                                       BB\s
+                L                                                                                                      \s
+                                                                                                                       \s
+                                                                                                                       \s
+                                                                                                                       \s
+                                                                                                                       \s
+                                                                                                                       \s""";
         worldOffsetColumns = 0;
         worldOffsetLines = 0;
     }

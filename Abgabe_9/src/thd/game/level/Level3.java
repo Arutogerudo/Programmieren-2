@@ -21,35 +21,36 @@ public class Level3 extends Level {
         // d - rocket, E - chain rocket pad, e - black wall rocket pad, F - StartRamp, f - pilons, H - stone wall
         // h - centreline runway, I - Fence, i - Jet, J - Parkbox, j - safety box, K - Wall Airport, k - Wall Runway
         world = """
-                KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK|KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKBBBBKKKKKKKKKK|KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\s
-                                                                   |                                     BBjBB         |i                                        i        J\s
-                                                                   |                                    BBBBBB         |                   G                              J\s
-                                                           o       |                                     BBBB          |                                                  J\s
-                                                                   |         a                                         |                       JJJJJJJJ        JJJJJJJJJJJJ\s
-                                                                   |                                                   |i                     i       J          i        J\s
-                                                                   |                                                   |                              J                   J\s
-                I            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk|kkkkkkkkkkkkkkkkkkkkkkkkkkk                        |                              J                   J\s
-                             k  R                                  |                                                   |JJJJJJJ                JJJJJJJJ        JJJJJJJJJJJJ\s
-                I            k                                G    |                     G                             |                              J                   J\s
-                             k                                     |                                                   |                      i       J                   J\s
-                I            k  h ih  h  h  h  h  h  h  h  h  h  h |h  h  h  h  h  h  h  h  h                          |                              J                   J\s
-                             k                                     |               i                                   |                              J               sR  J\s
-                I            k                                     |                                   S               |                              J                   J\s
-                             k                                     |                                                   |                              J                   J\s
-                I            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk|kkkkkkkkkkkkkkkkkkkkkkkkkkk                  hhhhhh|hhhhhhh           JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\s
-                                                                   |                                                   |                                                   \s
-                I                                                  |                                                   |                                                   \s
-                                                                   |                                                   |                                                   \s
-                I   B                                     s        |                                                   |                                             o     \s
-                   BBB                                             |                                                   |                                                   \s
-                IBBBBB                                             |                                                   |                                                   \s
-                BBBBBB                                             |                                                   |                                                   \s
-                BBBBBKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK|KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK|KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK\s
-                                                                                                                                                                         \s
-                                                                                                                                                                         \s
-                                                                                                                                                                         \s
-                                                                                                                                                                         \s
-                                                                                                                                                                         \s""";
+                K                                                  |K                                    BBBB          K                                                   \s
+                                                                   |                                     BBjBB         i                                        i        JJ\s
+                                                                   |                                    BBBBBB                            G                              JJ\s
+                                                           o       |                                     BBBB                                                            JJ\s
+                                                                   |         a                                                                JJJJJJJJ        JJJJJJJJJJJJJ\s
+                                                                   |                                                   i                     i       J          i        JJ\s
+                                                                   |                                                                                 J                   JJ\s
+                I            kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk|kkkkkkkkkkkkkkkkkkkkkkkkkkk                                                      J                   JJ\s
+                             k  R                                  |                                                   JJJJJJJ                JJJJJJJJ        JJJJJJJJJJJJJ\s
+                             k                                G    |                     G                                                           J                   JJ\s
+                             k                                     |                                                                         i       J                   JJ\s
+                             k  h ih  h  h  h  h  h  h  h  h  h  h |h  h  h  h  h  h  h  h  h                                                        J                   JJ\s
+                             k                                     |               i                                                                 J               sR  JJ\s
+                             k                                     |                                   S                                             J                   JJ\s
+                             k                                     |                                                                                 J                   JJ\s
+                             kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk|kkkkkkkkkkkkkkkkkkkkkkkkkkk                  hhhhhhhhhhhhh           JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ\s
+                                                                   |                                                                                                      \s
+                                                                   |                                                                                                      \s
+                                                                   |                                                                                                      \s
+                    B                                     s        |                                                                                                o     \s
+                   BBB                                             |                                                                                                      \s
+                 BBBBB                                             |                                                                                                      \s
+                BBBBBB                                             |                                                                                                      \s
+                KBBBB                                              |K                                                  K                                                  \s
+                                                                                                                                                                          \s
+                                                                                                                                                                          \s
+                                                                                                                                                                          \s
+                                                                                                                                                                          \s
+                                                                                                                                                                          \s""";
+        worldOffsetColumns = 0;
         worldOffsetColumns = 0;
         worldOffsetLines = 0;
     }

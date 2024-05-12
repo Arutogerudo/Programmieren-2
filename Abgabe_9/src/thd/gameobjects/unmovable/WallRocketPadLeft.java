@@ -7,23 +7,25 @@ import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
 /**
- * unmovable Gameobject Bush (game field).
+ * unmovable Gameobject Wall in Rocket Pad (game field).
  */
-public class WallAirport extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject{
+public class WallRocketPadLeft extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+    private double sizeSide;
 
     /**
-     * Creates a wall in the airport in the given gameview.
+     * Crates a new game object that is able to collide.
      *
-     * @param gameView        provides gameview
-     * @param gamePlayManager manages the gamePlay
+     * @param gameView        Window to show the game object on.
+     * @param gamePlayManager Controls the game play.
      */
-    public WallAirport(GameView gameView, GamePlayManager gamePlayManager) {
+    public WallRocketPadLeft(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         size = 0.1;
+        sizeSide = 0.09;
         rotation = 0;
-        singleWidth = 25;
-        width = singleWidth * 52;
+        width = 22;
         height = 22;
+        hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
     }
 
@@ -34,14 +36,12 @@ public class WallAirport extends CollidingGameObject implements ShiftableGameObj
 
     @Override
     public String toString() {
-        return "Wall in Airport: " + position;
+        return "Wall in Rocket Pad: " + position;
     }
 
     @Override
     public void addToCanvas() {
-        for (int orderplace = 0; orderplace < 52; orderplace++) {
-            gameView.addImageToCanvas("wallairport.png", position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
-        }
+        gameView.addImageToCanvas("wallrocketpadleft.png", position.getX(), position.getY(), sizeSide, rotation);
     }
 
     @Override

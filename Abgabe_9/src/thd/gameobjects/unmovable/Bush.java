@@ -12,20 +12,24 @@ import thd.gameobjects.movable.Tank;
  * unmovable Gameobject Bush (game field).
  */
 public class Bush extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject<GameObject> {
+    private int number;
 
     /**
      * Creates a bush in the given gameview.
      *
      * @param gameView        provides gameview
      * @param gamePlayManager manages the gamePlay
+     * @param number number of single bushes horizontal next to each other
      */
-    public Bush(GameView gameView, GamePlayManager gamePlayManager) {
+    public Bush(GameView gameView, GamePlayManager gamePlayManager, int number) {
         super(gameView, gamePlayManager);
         size = 0.1;
         rotation = 0;
-        width = 25;
+        singleWidth = 25;
+        width = singleWidth * number;
         height = 25;
         distanceToBackground = 1;
+        this.number = number;
     }
 
     @Override
@@ -40,7 +44,9 @@ public class Bush extends CollidingGameObject implements ShiftableGameObject, Ac
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("bush.png", position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < number; orderplace++) {
+            gameView.addImageToCanvas("bush.png", position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
+        }
     }
 
     @Override

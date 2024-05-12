@@ -36,7 +36,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
     public Tank(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         size = 0.1;
-        speedInPixel = 2;
+        speedInPixel = 5;
         rotation = 0;
         width = 75;
         height = 55;
@@ -91,9 +91,14 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
     }
 
     /**
-     * Tank moves right.
+     * Tank moves right, regarding Colliding Objects he cannot went through.
+     * and with shifting the world when he is at the right edge of the gameview.
+     *
+     * @param shiftCounterPerLevel gives the actual number of already done shifts, before the move
+     *
+     * @return returns the number of already done left shift in the level, after the move
      */
-    public void right() {
+    public int right(int shiftCounterPerLevel) {
         if (position.getX() < GAMEVIEW_WIDTH){
             position.right(speedInPixel); // Bewegung zunächst wie geplant durchführen.
             for (CollidingGameObject collidingGameObject : collidingGameObjectsForPathDecision) {
@@ -103,9 +108,11 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
                     break;
                 }
             }
+            return shiftCounterPerLevel;
         } else {
             gamePlayManager.moveWorldToLeft(GAMEVIEW_WIDTH);
             dimension += 1;
+            return shiftCounterPerLevel + 1;
         }
 
 

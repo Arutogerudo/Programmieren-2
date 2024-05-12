@@ -23,7 +23,8 @@ public class BlackWallRocketPad extends CollidingGameObject implements Shiftable
         super(gameView, gamePlayManager);
         size = 3;
         rotation = 0;
-        width = widthOfBlockImage(BLACK_WALL) * size;
+        singleWidth = widthOfBlockImage(BLACK_WALL) * size;
+        width = singleWidth * 10;
         height = heightOfBlockImage(BLACK_WALL) * size;
         hitBoxOffsets(0, 0, 0, 0);
         distanceToBackground = 0;
@@ -36,7 +37,9 @@ public class BlackWallRocketPad extends CollidingGameObject implements Shiftable
 
     @Override
     public void addToCanvas() {
-        gameView.addBlockImageToCanvas(BLACK_WALL, position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < 10; orderplace++) {
+            gameView.addBlockImageToCanvas(BLACK_WALL, position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
+        }
     }
 
     @Override

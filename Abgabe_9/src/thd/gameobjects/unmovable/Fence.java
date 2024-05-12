@@ -22,7 +22,8 @@ public class Fence extends CollidingGameObject implements ShiftableGameObject, A
         size = 0.175;
         rotation = 0;
         width = 87;
-        height = 42;
+        singleHeight = 42;
+        height = singleHeight * 8;
         distanceToBackground = 0;
     }
 
@@ -38,7 +39,9 @@ public class Fence extends CollidingGameObject implements ShiftableGameObject, A
 
     @Override
     public void addToCanvas() {
-        gameView.addImageToCanvas("fenceairport.png", position.getX(), position.getY(), size, rotation);
+        for (int orderplace = 0; orderplace < 10; orderplace++) {
+            gameView.addImageToCanvas("fenceairport.png", position.getX(), position.getY() + orderplace * singleHeight, size, rotation);
+        }
     }
 
     @Override
