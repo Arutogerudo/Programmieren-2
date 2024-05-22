@@ -24,12 +24,13 @@ class GameWorldManager extends GamePlayManager {
         scoreboard = new Scoreboard(gameView, this);
         collidingObjects = new LinkedList<>();
         this.activatableGameObjects = new LinkedList<>();
+        overlay = new Overlay(gameView, this);
     }
 
     private void spawnGameObjects() {
         spawnGameObject(scoreboard);
         spawnGameObject(tank);
-        spawnGameObject(new Jimmy(gameView, this));
+        spawnGameObject(overlay);
     }
 
     private void spawnGameObjectsFromWorldString() {
