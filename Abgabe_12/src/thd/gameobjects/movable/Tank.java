@@ -46,7 +46,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
         height = 55;
         hitBoxOffsets(0, 0, 0, 0);
         shotDurationInMilliseconds = 300;
-        distanceToBackground = 1;
+        distanceToBackground = 3;
         this.position.updateCoordinates(100, 100);
         dimension = 1;
         unbeatable = true;

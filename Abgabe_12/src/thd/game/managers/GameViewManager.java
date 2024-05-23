@@ -17,7 +17,7 @@ public class GameViewManager extends GameView {
         setWindowIcon("tigertank.png");
         changeBackgroundColor(new Color(168, 112, 47));
         gameManager.startNewGame();
-        showStatistic(true);
+        showStatistic(false);
     }
     @Override
     public void gameLoop() { // Dieser Code wird 60 mal pro Sekunde ausgeführt.

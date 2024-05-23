@@ -12,8 +12,8 @@ import java.awt.*;
 public class GamePlayManager extends WorldShiftManager {
     private final GameObjectManager gameObjectManager;
     private static final int AMMUNITION = 5;
-    protected int points;
-    protected int lives;
+    int points;
+    int lives;
     private int ammunition;
     private int packs;
     /**
@@ -77,12 +77,13 @@ public class GamePlayManager extends WorldShiftManager {
      * Method that decreases life by 1 if Tank collides with enemies or field objects.
      */
     public void lifeLost() {
+        gameView.changeBackgroundColor(Color.red); // @TODO Farbe für einen Moment nach rot wechseln und dann wieder zurück
         lives -= 1;
         gameView.playSound("lifelost.wav", false);
-        gameView.changeBackgroundColor(Color.RED);
         if (lives <= 0) {
             throw new GameOverException("Game over!");
         }
+        gameView.changeBackgroundColor(level.backgroundColor);
     }
 
     /**

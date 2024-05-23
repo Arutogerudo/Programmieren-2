@@ -20,7 +20,7 @@ class GameWorldManager extends GamePlayManager {
     protected GameWorldManager(GameView gameView) {
         super(gameView);
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
-        tank = new Tank(gameView, this);
+        tank = new Tank(gameView, this); // TODO Tank aus World String erzeugen
         scoreboard = new Scoreboard(gameView, this);
         collidingObjects = new LinkedList<>();
         this.activatableGameObjects = new LinkedList<>();
@@ -40,19 +40,7 @@ class GameWorldManager extends GamePlayManager {
                 double x = (scalledWidth - level.worldOffsetColumns) * WORLD_SCALLING_FACTOR;
                 double y = (scalledHeight - level.worldOffsetLines) * WORLD_SCALLING_FACTOR;
                 char character = lines[scalledHeight].charAt(scalledWidth);
-                if (character == 'B') {
-                    Bush bush = new Bush(gameView, this, 1);
-                    bush.getPosition().updateCoordinates(x, y);
-                    addActivatableGameObject(bush);
-                } else if (character == 'L') {
-                    Bush bush = new Bush(gameView, this, 103);
-                    bush.getPosition().updateCoordinates(x, y);
-                    addActivatableGameObject(bush);
-                } else if (character == 'l') {
-                    Bush bush = new Bush(gameView, this, 4);
-                    bush.getPosition().updateCoordinates(x, y);
-                    addActivatableGameObject(bush);
-                } else if (character == 'G') {
+                if (character == 'G') {
                     addActivatableGameObject(new Ghost(gameView, this, new Position(x, y), 250, 250, "down", "quadratic"));
                 } else if (character == 'g') {
                     addActivatableGameObject(new Ghost(gameView, this, new Position(x, y), 700, 250, "right", "triangular"));
@@ -70,6 +58,18 @@ class GameWorldManager extends GamePlayManager {
                     addActivatableGameObject(new Spy(gameView, this, new Position(x, y), 700, 250, "left", "triangular"));
                 } else if (character == 'z') {
                     addActivatableGameObject(new Spy(gameView, this, new Position(x, y), 0, 300, "up", "linear"));
+                } else if (character == 'B') {
+                    Bush bush = new Bush(gameView, this, 1);
+                    bush.getPosition().updateCoordinates(x, y);
+                    addActivatableGameObject(bush);
+                } else if (character == 'L') {
+                    Bush bush = new Bush(gameView, this, 103);
+                    bush.getPosition().updateCoordinates(x, y);
+                    addActivatableGameObject(bush);
+                } else if (character == 'l') {
+                    Bush bush = new Bush(gameView, this, 4);
+                    bush.getPosition().updateCoordinates(x, y);
+                    addActivatableGameObject(bush);
                 } else if (character == 'W') {
                     WoodenWall woodenWall = new WoodenWall(gameView, this);
                     woodenWall.getPosition().updateCoordinates(x, y);

@@ -19,7 +19,7 @@ abstract class Enemy extends CollidingGameObject implements ShiftableGameObject,
     Enemy(GameView gameView, GamePlayManager gamePlayManager) {
         super(gameView, gamePlayManager);
         rotation = 0;
-        distanceToBackground = 1;
+        distanceToBackground = 50;
         speedInPixel = 3;
         switch (Level.difficulty) {
             case EASY:
