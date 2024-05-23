@@ -76,6 +76,7 @@ class Shot extends CollidingGameObject implements ShiftableGameObject {
     public void reactToCollisionWith(CollidingGameObject other) {
         if (other instanceof Accordion || other instanceof Ghost ||other instanceof Spy) {
             gamePlayManager.addPoints(POINTS_PER_KILL);
+            gameView.playSound("hit.wav", false);
             gamePlayManager.destroyGameObject(this);
         } else if (!(other instanceof Tank)) {
             gamePlayManager.destroyGameObject(this);
