@@ -27,9 +27,12 @@ public class StartScreen {
     public void showStartScreenWithPreselectedDifficulty(Difficulty preselectedDifficulty) {
         String title = "Tiger Tank";
         String description = """
-                Move the tank through the maze and select every Radioactive Packs to complete your mission!
+                Move the tank through the maze and select every Radioactive Packs
+                to complete your mission to free the world!
                 If you fail, the world is doomed!
+                \s
                 You move your tank with the WASD keys and you can shoot with SPACE.
+                If you collect a Radioactive Pack you will get new ammunition.
                 """;
         boolean difficulty = preselectedDifficulty == Difficulty.EASY;
         if (gameView.showSimpleStartScreen(title, description, difficulty)) {

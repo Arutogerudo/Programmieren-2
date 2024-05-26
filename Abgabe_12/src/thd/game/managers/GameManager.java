@@ -6,7 +6,10 @@ import thd.game.level.Level3;
 import thd.game.utilities.FileAccess;
 import thd.game.utilities.GameView;
 import thd.screens.EndScreen;
+import thd.screens.EndScreenLoose;
 import thd.screens.StartScreen;
+
+import java.awt.*;
 
 /**
  * Class to manage the game.
@@ -31,13 +34,28 @@ class GameManager extends LevelManager {
             } else if (gameView.timer(2000, this)) {
                 overlay.stopShowing();
             }
-            highscore = getPoints();
-            EndScreen endScreen = new EndScreen(gameView);
-            endScreen.showEndScreen(points);
+            if (getLives() == 0) {
+                EndScreenLoose endScreen = new EndScreenLoose(gameView);
+                endScreen.showEndScreen();
+            } else {
+                if (highscore < getPoints()) {
+                    highscore = getPoints();
+                    FileAccess.writeHighscoreToDisc(highscore);
+                }
+                EndScreen endScreen = new EndScreen(gameView);
+                endScreen.showEndScreen(points);
+            }
             startNewGame();
         } else if (endOfLevel()) {
             switchToNextLevel();
             initializeLevel();
+        } else if (lifeLost) {
+            gameView.changeBackgroundColor(Color.RED);
+            if (gameView.timer(2000, this)) {
+                initializeLevel();
+                lifeLost = false;
+                shiftCounterPerLevel = 0;
+            }
         }
     }
 
@@ -68,6 +86,7 @@ class GameManager extends LevelManager {
     }
     void startNewGame() {
         Difficulty difficulty = FileAccess.readDifficultyFromDisc();
+        highscore = FileAccess.readHighscoreFromDisc();
         StartScreen startScreen = new StartScreen(gameView);
         startScreen.showStartScreenWithPreselectedDifficulty(difficulty);
         difficulty = startScreen.getSelectedDifficulty();

@@ -20,7 +20,6 @@ class GameWorldManager extends GamePlayManager {
     protected GameWorldManager(GameView gameView) {
         super(gameView);
         collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
-        tank = new Tank(gameView, this); // TODO Tank aus World String erzeugen
         scoreboard = new Scoreboard(gameView, this);
         collidingObjects = new LinkedList<>();
         this.activatableGameObjects = new LinkedList<>();
@@ -29,7 +28,6 @@ class GameWorldManager extends GamePlayManager {
 
     private void spawnGameObjects() {
         spawnGameObject(scoreboard);
-        spawnGameObject(tank);
         spawnGameObject(overlay);
     }
 
@@ -40,7 +38,10 @@ class GameWorldManager extends GamePlayManager {
                 double x = (scalledWidth - level.worldOffsetColumns) * WORLD_SCALLING_FACTOR;
                 double y = (scalledHeight - level.worldOffsetLines) * WORLD_SCALLING_FACTOR;
                 char character = lines[scalledHeight].charAt(scalledWidth);
-                if (character == 'G') {
+                if (character == 'T'){
+                    tank = new Tank(gameView, this, new Position(x, y));
+                    addActivatableGameObject(tank);
+                } else if (character == 'G') {
                     addActivatableGameObject(new Ghost(gameView, this, new Position(x, y), 250, 250, "down", "quadratic"));
                 } else if (character == 'g') {
                     addActivatableGameObject(new Ghost(gameView, this, new Position(x, y), 700, 250, "right", "triangular"));
@@ -166,7 +167,12 @@ class GameWorldManager extends GamePlayManager {
         ListIterator<GameObject> iterator = activatableGameObjects.listIterator();
         while (iterator.hasNext()) {
             GameObject gameObject = iterator.next();
-            if (gameObject instanceof Accordion accordion) {
+            if (gameObject instanceof Tank tank) {
+                if (tank.tryToActivate(null)) {
+                    spawnGameObject(gameObject);
+                    iterator.remove();
+                }
+            } else if (gameObject instanceof Accordion accordion) {
                 if (accordion.tryToActivate(tank)) {
                     spawnGameObject(gameObject);
                     iterator.remove();

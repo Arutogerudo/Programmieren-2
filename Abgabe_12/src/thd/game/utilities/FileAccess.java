@@ -12,6 +12,7 @@ import java.nio.file.Path;
  */
 public class FileAccess {
     private static final Path WICHTEL_GAME_FILE = Path.of(System.getProperty("user.home")).resolve("wichtelgame.txt");
+    private static final Path HIGHSCORE_FILE = Path.of(System.getProperty("user.home")).resolve("highscore.txt");
 
     /**
      * Updates difficulty to the file.
@@ -43,4 +44,33 @@ public class FileAccess {
         }
     }
 
+
+    /**
+     * Updates new highscore to the file.
+     * Ends the Programm in case of a fail.
+     *
+     * @param highscore highscore to write to Disk.
+     */
+    public static void writeHighscoreToDisc(int highscore) {
+        try {
+            Files.writeString(HIGHSCORE_FILE, "" + highscore, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
+
+    /**
+     * Reads the highscore from the disk.
+     *
+     * @return read highscore or 0 in case of an error.
+     */
+    public static int readHighscoreFromDisc() {
+        try {
+            String text = Files.readString(HIGHSCORE_FILE, StandardCharsets.UTF_8);
+            return Integer.parseInt(text);
+        } catch (IllegalArgumentException | IOException e) {
+            return 0;
+        }
+    }
 }

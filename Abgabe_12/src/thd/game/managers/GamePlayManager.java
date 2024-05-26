@@ -16,10 +16,11 @@ public class GamePlayManager extends WorldShiftManager {
     int lives;
     private int ammunition;
     private int packs;
+    boolean lifeLost;
     /**
      * Highscore of the game.
      */
-    public int highscore; // @TODO noch in write File einbauen
+    public int highscore;
 
     protected GamePlayManager(GameView gameView) {
         super(gameView);
@@ -33,6 +34,7 @@ public class GamePlayManager extends WorldShiftManager {
         }
         packs = 0;
         highscore = 0;
+        lifeLost = false;
     }
 
     /**
@@ -77,12 +79,10 @@ public class GamePlayManager extends WorldShiftManager {
      * Method that decreases life by 1 if Tank collides with enemies or field objects.
      */
     public void lifeLost() {
-        gameView.changeBackgroundColor(Color.red); // @TODO Farbe für einen Moment nach rot wechseln und dann wieder zurück
+        gameView.changeBackgroundColor(Color.red);
         lives -= 1;
+        lifeLost = true;
         gameView.playSound("lifelost.wav", false);
-        if (lives <= 0) {
-            throw new GameOverException("Game over!");
-        }
         gameView.changeBackgroundColor(level.backgroundColor);
     }
 

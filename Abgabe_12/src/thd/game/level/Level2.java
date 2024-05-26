@@ -13,7 +13,6 @@ public class Level2 extends Level {
         name = "ROCKET PAD";
         number = 2;
         backgroundColor = new Color(59, 182, 18);
-        backgroundColor = new Color(59, 182, 18);
         // B - Bush, T - Tank, W - Wooden Wall, R - Radioactive Pack
         // G - Ghost quadratic, g - Ghost triangular, p - Ghost linear
         // A - Accordion quadratic, a - Accordion triangular, o - Accordion linear
@@ -31,7 +30,7 @@ public class Level2 extends Level {
                 bE                                      e         Cb                       d      d                    \s
                                                                   Cb        d                           F            Cb\s
                                                                   Cb                        e                        Cb\s
-                                                                  Cb        d                                        Cb\s
+                T                                                 Cb        d                                        Cb\s
                                F   f  f  F                        Cb                                                 Cb\s
                               G                                   Cb        d                           F            Cb\s
                                    f  f                           Cb                                                 Cb\s

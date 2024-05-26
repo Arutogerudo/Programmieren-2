@@ -24,7 +24,7 @@ public class Level1 extends Level {
         world = """
                 L                                                                                                      \s
                 BB                                                                                                 l   \s
-                B  T                                           G   a                                               l   \s
+                B  T                                           G       a                                           l   \s
                 B                                                                                                   BBB\s
                 B                                                                                                   BBB\s
                 B                                                                                                    BB\s

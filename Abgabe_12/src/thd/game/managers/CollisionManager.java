@@ -10,7 +10,7 @@ class CollisionManager {
 
     private final List<CollidingGameObject> collidingGameObjects;
 
-    protected CollisionManager() {
+    CollisionManager() {
         collidingGameObjects = new LinkedList<>();
     }
 
@@ -21,7 +21,7 @@ class CollisionManager {
      *
      * @param showHitBoxes If true, hitboxes of colliding game objects in the list are shown.
      */
-    protected void manageCollisions(boolean showHitBoxes) {
+    void manageCollisions(boolean showHitBoxes) {
         int sublistIndex = 0;
         for (CollidingGameObject gameObjectA : collidingGameObjects) {
             sublistIndex++;
@@ -38,13 +38,13 @@ class CollisionManager {
         }
     }
 
-    protected void addToCollisionManagement(GameObject toAdd) {
+    void addToCollisionManagement(GameObject toAdd) {
         if (toAdd instanceof CollidingGameObject collidingGameObject) {
             collidingGameObjects.add(collidingGameObject);
         }
     }
 
-    protected void removeFromCollisionManagement(GameObject toRemove) {
+    void removeFromCollisionManagement(GameObject toRemove) {
         if (toRemove instanceof CollidingGameObject collidingGameObject) {
             collidingGameObjects.remove(collidingGameObject);
         }

@@ -19,7 +19,7 @@ public class GamePlayManager extends WorldShiftManager {
     /**
      * Highscore of the game.
      */
-    public int highscore; // @TODO noch in write File einbauen
+    public int highscore;
 
     protected GamePlayManager(GameView gameView) {
         super(gameView);

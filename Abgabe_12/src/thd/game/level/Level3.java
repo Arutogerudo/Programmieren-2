@@ -24,7 +24,7 @@ public class Level3 extends Level {
                 K                                                  |K                                    BBBB          K                                                   \s
                                                                    |                                     BBjBB         i                                        i        JJ\s
                                                                    |                                    BBBBBB                            G                              JJ\s
-                                                           o       |                                     BBBB                                                            JJ\s
+                T                                          o       |                                     BBBB                                                            JJ\s
                                                                    |         a                                                                JJJJJJJJ        JJJJJJJJJJJJJ\s
                                                                    |                                                   i                     i       J          i        JJ\s
                                                                    |                                                                                 J                   JJ\s
