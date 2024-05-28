@@ -33,7 +33,7 @@ public class Overlay extends GameObject {
      *
      * @return True, if currently a message is shown.
      */
-    public boolean isMessageShown() {
+    private boolean isMessageShown() {
         return messageShown;
     }
 
@@ -42,7 +42,7 @@ public class Overlay extends GameObject {
      *
      * @param message Message to be shown.
      */
-    public void showMessage(String message) {
+    private void showMessage(String message) {
         showMessage(message, 10_000);
     }
 
@@ -66,7 +66,7 @@ public class Overlay extends GameObject {
     /**
      * The overlay will stop to show the current message.
      */
-    public void stopShowing() {
+    private void stopShowing() {
         messageShown = false;
     }
 

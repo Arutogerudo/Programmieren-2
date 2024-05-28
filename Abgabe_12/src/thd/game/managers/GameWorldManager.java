@@ -13,15 +13,13 @@ import java.util.ListIterator;
 
 class GameWorldManager extends GamePlayManager {
     private static final int WORLD_SCALLING_FACTOR = 25; //51:29
-    private final LinkedList<CollidingGameObject> collidingObjects;
-    private final List<GameObject> activatableGameObjects;
+    final List<GameObject> activatableGameObjects;
     private final LinkedList<CollidingGameObject> collidingGameObjectsForPathDecision;
 
-    protected GameWorldManager(GameView gameView) {
+    GameWorldManager(GameView gameView) {
         super(gameView);
-        collidingGameObjectsForPathDecision = new LinkedList<CollidingGameObject>();
+        collidingGameObjectsForPathDecision = new LinkedList<>();
         scoreboard = new Scoreboard(gameView, this);
-        collidingObjects = new LinkedList<>();
         this.activatableGameObjects = new LinkedList<>();
         overlay = new Overlay(gameView, this);
     }

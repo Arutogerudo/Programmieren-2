@@ -1,13 +1,15 @@
 package thd.gameobjects.movable;
 
-import thd.game.level.Level;
 import thd.game.managers.GamePlayManager;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.ActivatableGameObject;
 import thd.gameobjects.base.CollidingGameObject;
 import thd.gameobjects.base.ShiftableGameObject;
 
-abstract class Enemy extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
+/**
+ * Game object that is able to move and collide.
+ */
+public abstract class Enemy extends CollidingGameObject implements ShiftableGameObject, ActivatableGameObject {
     EnemyMovementPatterns enemyMovementPatterns;
 
     /**
@@ -20,12 +22,15 @@ abstract class Enemy extends CollidingGameObject implements ShiftableGameObject,
         super(gameView, gamePlayManager);
         rotation = 0;
         distanceToBackground = 50;
-        speedInPixel = 3;
-        switch (Level.difficulty) {
-            case EASY:
-                speedInPixel -= 1;
-                break;
-        }
+    }
+
+    /**
+     * Sets the speed of the enemy.
+     *
+     * @param speedInPixel Speed of the enemy in pixel per frame.
+     */
+    public void updateSpeedInPixel(int speedInPixel) {
+        this.speedInPixel = speedInPixel;
     }
 
     @Override

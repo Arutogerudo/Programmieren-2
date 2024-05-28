@@ -28,12 +28,6 @@ class GameManager extends LevelManager {
 
     private void gameManagement() {
         if (endOfGame()) {
-            if (!overlay.isMessageShown()) {
-                overlay.showMessage("Game over");
-                gameView.stopAllSounds();
-            } else if (gameView.timer(2000, this)) {
-                overlay.stopShowing();
-            }
             if (getLives() == 0) {
                 EndScreenLoose endScreen = new EndScreenLoose(gameView);
                 endScreen.showEndScreen();
@@ -45,13 +39,14 @@ class GameManager extends LevelManager {
                 EndScreen endScreen = new EndScreen(gameView);
                 endScreen.showEndScreen(points);
             }
+            gameView.stopAllSounds();
             startNewGame();
         } else if (endOfLevel()) {
             switchToNextLevel();
             initializeLevel();
         } else if (lifeLost) {
             gameView.changeBackgroundColor(Color.RED);
-            if (gameView.timer(2000, this)) {
+            if (gameView.timer(1000, this)) {
                 initializeLevel();
                 lifeLost = false;
                 shiftCounterPerLevel = 0;
@@ -74,7 +69,6 @@ class GameManager extends LevelManager {
     @Override
     protected void initializeLevel() {
         super.initializeLevel();
-        //tank.changeMovingAbility();
         gameView.changeBackgroundColor(level.backgroundColor);
         overlay.showMessage(level.name, 2);
     }
@@ -92,6 +86,7 @@ class GameManager extends LevelManager {
         difficulty = startScreen.getSelectedDifficulty();
         FileAccess.writeDifficultyToDisc(difficulty);
         Level.difficulty = difficulty;
+        lifeLost = false;
         initializeGame();
         gameView.playSound("background.wav", true);
     }

@@ -1,13 +1,15 @@
 package thd.game.managers;
 import thd.game.level.*;
 import thd.game.utilities.GameView;
+import thd.gameobjects.base.GameObject;
+import thd.gameobjects.movable.Enemy;
 
 import java.util.List;
 
 class LevelManager extends GameWorldManager {
     private List<Level> levels;
     private static final int LIVES = 3;
-    protected LevelManager(GameView gameView) {
+    LevelManager(GameView gameView) {
         super(gameView);
         initializeGame();
     }
@@ -19,13 +21,24 @@ class LevelManager extends GameWorldManager {
     }
 
     private void initializeGameObjects() {
-        /*Die Methode initializeGameObjects() soll in Zukunft dazu genutzt werden um Spielelemente an ein
-        neues Level anzupassen, z.B.
-                o Anpassungen für das Level am Hintergrund machen.
-                o Die Lebensanzeige aktualisieren.
-                o Den Punktestand aus dem vorherigen Level übernehmen.
-                o Einen Countdown neu starten.
-        ➔ Kopieren Sie diesen Text als Kommentar zur Erinnerung für später in diese Methode*/
+        switch (Level.difficulty) {
+            case EASY -> {
+                lives = LIVES + 2;
+                for (GameObject gameObject : activatableGameObjects) {
+                    if (gameObject instanceof Enemy) {
+                        ((Enemy) gameObject).updateSpeedInPixel(2);
+                    }
+                }
+            }
+            case STANDARD -> {
+                lives = LIVES;
+                for (GameObject gameObject : activatableGameObjects) {
+                    if (gameObject instanceof Enemy) {
+                        ((Enemy) gameObject).updateSpeedInPixel(3);
+                    }
+                }
+            }
+        }
     }
 
     protected boolean hasNextLevel() {

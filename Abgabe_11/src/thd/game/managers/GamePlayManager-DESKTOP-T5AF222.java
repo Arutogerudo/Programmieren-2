@@ -1,12 +1,10 @@
 package thd.game.managers;
 
-import thd.game.level.Difficulty;
 import thd.game.level.Level;
 import thd.game.utilities.GameView;
 import thd.gameobjects.base.GameObject;
 
 import java.awt.*;
-import java.util.Objects;
 
 /**
  * Manages the gameplay, e.g. dynamically creation of gameObjects / general spawning and destroying of gameobjects.
@@ -14,27 +12,27 @@ import java.util.Objects;
 public class GamePlayManager extends WorldShiftManager {
     private final GameObjectManager gameObjectManager;
     private static final int AMMUNITION = 5;
-    int points;
-    int lives;
+    protected int points;
+    protected int lives;
     private int ammunition;
     private int packs;
-    boolean lifeLost;
     /**
      * Highscore of the game.
      */
-    public int highscore;
+    public int highscore; // @TODO noch in write File einbauen
 
     protected GamePlayManager(GameView gameView) {
         super(gameView);
         gameObjectManager = new GameObjectManager();
         lives = 3;
         ammunition = AMMUNITION;
-        if (Objects.requireNonNull(Level.difficulty) == Difficulty.EASY) {
-            lives += 2;
+        switch (Level.difficulty) {
+            case EASY:
+                lives += 2;
+                break;
         }
         packs = 0;
         highscore = 0;
-        lifeLost = false;
     }
 
     /**
@@ -79,11 +77,12 @@ public class GamePlayManager extends WorldShiftManager {
      * Method that decreases life by 1 if Tank collides with enemies or field objects.
      */
     public void lifeLost() {
-        gameView.changeBackgroundColor(Color.red);
-        gameView.playSound("lifelost.wav", false);
-        gameView.changeBackgroundColor(level.backgroundColor);
         lives -= 1;
-        lifeLost = true;
+        gameView.playSound("lifelost.wav", false);
+        gameView.changeBackgroundColor(Color.RED);
+        if (lives <= 0) {
+            throw new GameOverException("Game over!");
+        }
     }
 
     /**

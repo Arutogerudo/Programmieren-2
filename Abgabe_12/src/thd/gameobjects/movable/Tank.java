@@ -35,6 +35,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
      *
      * @param gameView         provides gameview
      * @param gamePlayManager  manages the gamePlay
+     * @param position         position of the tank
      */
     public Tank(GameView gameView, GamePlayManager gamePlayManager, Position position) {
         super(gameView, gamePlayManager);
