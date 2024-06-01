@@ -52,6 +52,8 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
         unbeatable = true;
         movable = true;
         currentState = State.DOWN_BW;
+
+        shoot();
     }
 
     /**

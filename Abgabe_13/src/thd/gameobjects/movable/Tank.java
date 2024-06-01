@@ -57,6 +57,8 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
         unbeatable = true;
         movable = true;
         currentState = State.DOWN_BW;
+
+        shoot();
     }
 
     /**
@@ -189,7 +191,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
 
     @Override
     public void shoot() {
-        if (gameView.timer(shotDurationInMilliseconds, gameView) && gamePlayManager.getAmmunition() > 0) {
+        if (gameView.timer(shotDurationInMilliseconds, this) && gamePlayManager.getAmmunition() > 0) {
             Shot shot = new Shot(gameView, gamePlayManager, position.getX() + calculateAdditionalX(), position.getY() + calculateAdditionalY(), shotDirection());
             gamePlayManager.spawnGameObject(shot);
             gamePlayManager.shot();
