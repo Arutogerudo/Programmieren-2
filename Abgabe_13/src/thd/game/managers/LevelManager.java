@@ -25,14 +25,14 @@ class LevelManager extends GameWorldManager {
             case EASY -> {
                 for (GameObject gameObject : activatableGameObjects) {
                     if (gameObject instanceof Enemy) {
-                        ((Enemy) gameObject).updateSpeedInPixel(2);
+                        ((Enemy) gameObject).updateSpeedInPixel(3);
                     }
                 }
             }
             case STANDARD -> {
                 for (GameObject gameObject : activatableGameObjects) {
                     if (gameObject instanceof Enemy) {
-                        ((Enemy) gameObject).updateSpeedInPixel(3);
+                        ((Enemy) gameObject).updateSpeedInPixel(4);
                     }
                 }
             }

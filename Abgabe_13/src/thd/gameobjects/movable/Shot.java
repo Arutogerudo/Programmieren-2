@@ -14,7 +14,7 @@ class Shot extends CollidingGameObject implements ShiftableGameObject {
         super(gameView, gamePlayManager);
         size = SIZE;
         position.updateCoordinates(xCoordinate, yCoordinate);
-        speedInPixel = 3;
+        speedInPixel = 4;
         rotation = 0;
         width = SIZE_PIXEL;
         height = SIZE_PIXEL;

@@ -45,7 +45,7 @@ public class Tank extends CollidingGameObject implements MainCharacter, Shiftabl
     public Tank(GameView gameView, GamePlayManager gamePlayManager, Position position) {
         super(gameView, gamePlayManager);
         size = SIZE;
-        speedInPixel = 2;
+        speedInPixel = 3;
         rotation = 0;
         width = WIDTH;
         height = HEIGHT;

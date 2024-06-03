@@ -29,7 +29,6 @@ public class ChainRefinery extends CollidingGameObject implements ShiftableGameO
         } else {
             width = SINGLE_WIDTH;
         }
-        singleHeight = SINGLE_HEIGHT;
         if (direction.equals("vertical")) {
             height = SINGLE_HEIGHT * 9;
         } else {
@@ -53,11 +52,11 @@ public class ChainRefinery extends CollidingGameObject implements ShiftableGameO
     public void addToCanvas() {
         if (direction.equals("horizontal")) {
             for (int orderplace = 0; orderplace < 10; orderplace++) {
-                gameView.addImageToCanvas("chainrefinery.png", position.getX() + orderplace * singleWidth, position.getY(), size, rotation);
+                gameView.addImageToCanvas("chainrefinery.png", position.getX() + orderplace * SINGLE_WIDTH, position.getY(), size, rotation);
             }
         } else {
             for (int orderplace = 0; orderplace < 9; orderplace++) {
-                gameView.addImageToCanvas("chainrefinery.png", position.getX(), position.getY() + orderplace * singleHeight, size, rotation);
+                gameView.addImageToCanvas("chainrefinery.png", position.getX(), position.getY() + orderplace * SINGLE_HEIGHT, size, rotation);
             }
         }
 
